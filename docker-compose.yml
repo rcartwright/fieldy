@@ -1,0 +1,10 @@
+version: "3"
+services:
+  fieldy_container:
+    container_name: fieldy_container
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: fieldy:latest
+    ports:
+      - "4001:4001"
