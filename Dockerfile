@@ -20,6 +20,10 @@ RUN echo $(ls)
 
 # Install hex package manager
 RUN mix local.hex --force
+RUN mix local.rebar --force
+RUN mix archive.install hex phx_new 1.5.7 --force
+#RUN mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez --force
+#RUN mix archive.install hex phx_new 1.5.7 --force
 
 # Compile the project
 #RUN mix do compile --force
