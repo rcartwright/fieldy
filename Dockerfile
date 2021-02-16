@@ -29,4 +29,4 @@ RUN mix archive.install hex phx_new 1.5.7 --force
 #RUN mix do compile --force
 
 
-#CMD ["entrypoint.sh"]
+CMD ["server/entrypoint.sh"]

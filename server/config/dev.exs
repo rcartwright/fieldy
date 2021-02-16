@@ -5,7 +5,7 @@ config :api, API.Repo,
   username: "postgres",
   password: "postgres",
   database: "api_dev",
-  hostname: "localhost",
+  hostname: "fieldy_db_container",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
