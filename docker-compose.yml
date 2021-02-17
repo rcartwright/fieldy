@@ -1,13 +1,40 @@
 version: "3"
 services:
+  fieldy_db_container:
+    image: postgres:9.6
+    ports:
+      - 5431:5431
+    environment:
+      # Set user/password for Postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      # Set a path where Postgres should store the data
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
   fieldy_container:
     container_name: fieldy_container
     build:
       context: .
       dockerfile: ./Dockerfile
     image: fieldy:latest
+    command: mix phx.server
     volumes:
       - ./server:/app/server
-    working_dir: /app
+    working_dir: /app/server
     ports:
       - "4001:4001"
+    depends_on:
+      - fieldy_db_container
+    environment:
+      MIX_ENV: 'dev'
+      # Variables to connect to our Postgres server
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: api_dev
+      PGPORT: 5431
+      # Hostname of our Postgres container
+      PGHOST: fieldy_db_container
+volumes:
+  pgdata:

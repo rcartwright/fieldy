@@ -19,17 +19,3 @@ if [[ -z `psql -Atqc "\\list $PGDATABASE"` ]]; then
 fi
 
 exec mix phx.server
-
-# Notes:
-# In order for docker to work
-# run `docker ps` to see if any are running
-# if not: run `docker-compose up -d`
-# if that doesn't work, run `docker-compose up --build`
-# then run `docker-machine ip default` to get ip to go to
-# go to: http://[that ip]:4000
-
-
-# run commands from docker in terminal by logging into docker
-# username: rachelcartwright
-# password: new good one
-# then run winpty docker container run -it costbenefitanalysisapp_phoenix bash
