@@ -1,9 +1,10 @@
 version: "3"
 services:
   fieldy_db_container:
+    container_name: fieldy_db_container
     image: postgres:9.6
     ports:
-      - 5431:5431
+      - 5430:5430
     environment:
       # Set user/password for Postgres
       POSTGRES_USER: postgres
@@ -19,7 +20,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     image: fieldy:latest
-    command: mix phx.server
+    command: ["sh","../entrypoint.sh"]
     volumes:
       - ./server:/app/server
     working_dir: /app/server
@@ -33,7 +34,8 @@ services:
       PGUSER: postgres
       PGPASSWORD: postgres
       PGDATABASE: api_dev
-      PGPORT: 5431
+      DATABASE_URL: postgres://postgres:postgres@fieldy_db_container:5430/api_dev
+      PGPORT: 5430
       # Hostname of our Postgres container
       PGHOST: fieldy_db_container
 volumes:

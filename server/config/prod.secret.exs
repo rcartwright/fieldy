@@ -10,6 +10,7 @@ database_url =
     environment variable DATABASE_URL is missing.
     For example: ecto://USER:PASS@HOST/DATABASE
     """
+IO.inspect("loading prod config")
 
 config :api, API.Repo,
   # ssl: true,

@@ -35,4 +35,4 @@ RUN mix do deps.get, deps.compile
 WORKDIR /app
 
 #CMD ["mix", "phx.server"]
-CMD ["entrypoint.sh"]
+#CMD ["entrypoint.sh"]
