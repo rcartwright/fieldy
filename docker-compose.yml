@@ -4,7 +4,7 @@ services:
     container_name: fieldy_db_container
     image: postgres:9.6
     ports:
-      - 5430:5430
+      - 5430:5432
     environment:
       # Set user/password for Postgres
       POSTGRES_USER: postgres
@@ -34,8 +34,8 @@ services:
       PGUSER: postgres
       PGPASSWORD: postgres
       PGDATABASE: api_dev
-      DATABASE_URL: postgres://postgres:postgres@fieldy_db_container:5430/api_dev
-      PGPORT: 5430
+      DATABASE_URL: postgres://postgres:postgres@fieldy_db_container:5432/api_dev
+      PGPORT: 5432
       # Hostname of our Postgres container
       PGHOST: fieldy_db_container
 volumes:
