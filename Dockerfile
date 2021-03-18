@@ -32,7 +32,7 @@ RUN mix archive.install hex phx_new 1.5.7 --force
 RUN mix do deps.get, deps.compile
 #RUN dos2unix entrypoint.sh
 
-EXPOSE 5432
+EXPOSE 5430
 
 WORKDIR /app
 
