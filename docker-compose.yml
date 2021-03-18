@@ -4,7 +4,7 @@ services:
     container_name: fieldy_db_container
     image: postgres:9.6
     ports:
-      - 5430:5432
+      - 5432:5432
     environment:
       # Set user/password for Postgres
       POSTGRES_USER: postgres
