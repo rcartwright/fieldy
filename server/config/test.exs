@@ -10,7 +10,7 @@ config :api, API.Repo,
   username: "postgres",
   password: "postgres",
   database: "api_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "localhost",
+  hostname: System.get_env("PGHOST"),
   pool: Ecto.Adapters.SQL.Sandbox
 
   

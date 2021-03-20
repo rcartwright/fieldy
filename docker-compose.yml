@@ -29,7 +29,6 @@ services:
     depends_on:
       - fieldy_db_container
     environment:
-      MIX_ENV: 'dev'
       # Variables to connect to our Postgres server
       PGUSER: postgres
       PGPASSWORD: postgres
