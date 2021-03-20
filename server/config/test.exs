@@ -2,7 +2,6 @@ use Mix.Config
 
 # Configure your database
 
-IO.inspect("loading test config")
 #
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
@@ -24,3 +23,5 @@ config :api, APIWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+# Relax crypto strength a bit during testing
+config :bcrypt_elixir, :log_rounds, 4
