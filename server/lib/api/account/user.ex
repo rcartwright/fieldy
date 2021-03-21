@@ -1,7 +1,7 @@
 defmodule API.Account.User do
   use Ecto.Schema
   import Ecto.Changeset
-
+  @timestamps_opts [type: :utc_datetime_usec]
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
@@ -10,6 +10,7 @@ defmodule API.Account.User do
     field :password, :string, virtual: true
     field :password_hash, :string
 
+    #timestamps()
     # Add support for microseconds at the app level
     # for this specific schema
     timestamps(type: :utc_datetime_usec)

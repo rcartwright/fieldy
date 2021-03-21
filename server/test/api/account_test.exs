@@ -25,6 +25,10 @@ defmodule API.AccountTest do
 
     test "list_users/0 returns all users" do
       user = user_without_password()
+      IO.inspect(user)
+
+      IO.inspect("Account.list_users", Account.list_users())
+
       assert Account.list_users() == [user]
     end
 
