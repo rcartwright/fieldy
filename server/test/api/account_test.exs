@@ -25,9 +25,6 @@ defmodule API.AccountTest do
 
     test "list_users/0 returns all users" do
       user = user_without_password()
-      IO.inspect(user)
-
-      IO.inspect("Account.list_users", Account.list_users())
 
       assert Account.list_users() == [user]
     end
@@ -53,7 +50,7 @@ defmodule API.AccountTest do
       assert {:ok, %User{} = user} = Account.update_user(user, @update_attrs)
       assert user.email == "some updated email"
       assert user.is_active == false
-      assert Bcrypt.verify_pass("some password", user.password_hash)
+      assert Bcrypt.verify_pass("some updated password", user.password_hash)
     end
 
     test "update_user/2 with invalid data returns error changeset" do
