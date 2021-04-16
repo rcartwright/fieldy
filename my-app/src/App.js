@@ -1,9 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
+//import { UserList } from './features/list/Users';
+import { Users } from './pages/users/users'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 
-function App() {
+function Example() {
   return (
     <div className="App">
       <header className="App-header">
@@ -53,6 +56,17 @@ function App() {
       </header>
     </div>
   );
+}
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Users} />
+        <Route path="/quiet" component={Example} />
+      </Switch>
+    </Router>
+  )
 }
 
 export default App;
