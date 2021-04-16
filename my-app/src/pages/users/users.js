@@ -3,9 +3,9 @@ import { fetchUsers, userSlice } from './../../features/users/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 export function Users() {
-    // const dispatch = useDispatch();
-    // const users = dispatch(fetchUsers());
-    const users = useSelector(state => state.users)
+    const dispatch = useDispatch();
+    const users = dispatch(fetchUsers());
+    //const users = useSelector(state => state.users)
 
     function showUsers(users) {
         return users?.map((user) => {
@@ -13,7 +13,7 @@ export function Users() {
         })
     }
 
-    return (
+    return users && (
         <div>{showUsers(users)}</div>
     )
 }

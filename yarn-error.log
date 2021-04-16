@@ -1,0 +1,31 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js start
+
+PATH: 
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\rachel\bin;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\MySQL\MySQL Utilities 1.6;C:\Program Files (x86)\Skype\Phone;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files (x86)\erl8.3\bin;C:\Program Files (x86)\Elixir\bin;C:\Users\rachel\.mix\escripts;C:\Program Files (x86)\Yarn\bin;C:\Users\rachel\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\nodejs;C:\Program Files\Java\jdk-13.0.2\bin;C:\Program Files (x86)\gsudo;C:\Ruby24-x64\bin;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby2.1.0\bin;C:\Users\rachel\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Ampps\php;C:\Users\rachel\AppData\Roaming\Composer\vendor\bin;C:\Program Files\PostgreSQL\10\bin;C:\Program Files\PostgreSQL\10\lib;C:\Program Files\Microsoft VS Code\bin;C:\Users\rachel\AppData\Local\Yarn\bin;C:\Program Files\Docker Toolbox;C:\Users\rachel\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\rachel\AppData\Roaming\npm;C:\Program Files\Git\usr\bin;C:\Users\rachel\AppData\Local\GitHubDesktop\bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  10.15.3
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Couldn't find a package.json file in "C:\\Users\\rachel\\Sites\\fieldy"
+      at new MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:40048:15
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:98:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:109:13
