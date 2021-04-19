@@ -5,6 +5,6 @@ import userReducer from '../features/users/userSlice';
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    userData: userReducer
+    userState: userReducer
   },
 });

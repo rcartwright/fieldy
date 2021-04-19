@@ -6,6 +6,7 @@ const initialState =
   status: 'idle',
   hasErrors: false,
   users: [],
+  error: null
 }
 
 export const fetchUsers = createAsyncThunk(
@@ -65,6 +66,7 @@ export const userSlice = createSlice({
         state.status = 'error';
         state.hasErrors = true;
         state.users = [];
+        state.error = action.error.message;
       }
   },
 })
