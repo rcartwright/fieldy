@@ -4,10 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 export function Users() {
     const dispatch = useDispatch();
-    const status = useSelector(state => state.users.status)
-    const users = useSelector(state => state.users.users)
-   // const status = userState.status;
-   // console.log('userState', userState);
+    const userState = useSelector(state => state.userData)
+    const status = userState.status;
+    const users = userState.users;
 
     useEffect(() => {
         if (status === 'idle') {
