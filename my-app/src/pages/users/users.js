@@ -5,14 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 export function Users() {
     const dispatch = useDispatch();
     const userState = useSelector(state => state.userData)
-    const status = userState.status;
-    const users = userState.users;
 
     useEffect(() => {
-        if (status === 'idle') {
+        if (userState.status === 'idle') {
             dispatch(fetchUsers())
         }
-    }, [status, dispatch])
+    }, [userState.status, dispatch])
 
     function showUsers(users) {
         return users?.map((user) => {
@@ -21,12 +19,12 @@ export function Users() {
     }
 
     let content;
-    if (status === 'loading') {
+    if (userState.status === 'loading') {
         content = <div>Loading...</div>;
-    } else if (status === 'success') {
-        console.log('users', users)
-        content = <div>{showUsers(users)}</div>;
-    } else if (status === 'error') {
+    } else if (userState.status === 'success') {
+        console.log('userState.users', userState.users)
+        content = <div>{showUsers(userState.users)}</div>;
+    } else if (userState.status === 'error') {
         content = <div>error</div>;
     }
 
