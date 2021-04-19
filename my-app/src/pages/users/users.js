@@ -1,35 +1,33 @@
-//import("react-redux").DefaultRootState)
 import React, { useEffect } from 'react'
-import {fetchUsers, userSlice, getUsers } from './../../features/users/userSlice';
+import {fetchUsers, userSlice } from './../../features/users/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 export function Users() {
     const dispatch = useDispatch();
-    const userStatus = useSelector(state => state.users.status)
+    const status = useSelector(state => state.users.status)
     const users = useSelector(state => state.users.users)
-   // const users = useSelector(getUsers);
-    console.log('users', users);
+   // const status = userState.status;
+   // console.log('userState', userState);
 
     useEffect(() => {
-        if (userStatus === 'idle') {
+        if (status === 'idle') {
             dispatch(fetchUsers())
         }
-    }, [userStatus, dispatch])
+    }, [status, dispatch])
+
+    function showUsers(users) {
+        return users?.map((user) => {
+            return user.email;
+        })
+    }
 
     let content;
-
-    if (userStatus === 'loading') {
+    if (status === 'loading') {
         content = <div>Loading...</div>;
-    } else if (userStatus === 'success') {
-        console.log('users when success', users)
-        function showUsers(users) {
-            return users?.map((user) => {
-                return user.email;
-            })
-        }
-
+    } else if (status === 'success') {
+        console.log('users', users)
         content = <div>{showUsers(users)}</div>;
-    } else if (userStatus === 'error') {
+    } else if (status === 'error') {
         content = <div>error</div>;
     }
 

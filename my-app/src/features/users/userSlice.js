@@ -7,17 +7,6 @@ const initialState =
   hasErrors: false,
   users: [],
 }
-    //     {
-    //         email: "some@email.com",
-    //         id: "118d7017-93c1-4517-b014-81ca9c1416e6",
-    //         is_active: true
-    //     },
-    //     {
-    //         email: "some12345@email.com",
-    //         id: "118d7017-93c1-4517-b014-81ca9c1416e6",
-    //         is_active: true
-    //     },
-    // ]
 
 export const fetchUsers = createAsyncThunk(
   'users/fetchUsers',
@@ -81,10 +70,10 @@ export const userSlice = createSlice({
 })
 
 
-export const getUsers = (state) => state.users;
+//export const getUsers = (state) => state.users.users;
 
 //export const { fetchUsers } = userSlice.actions;
 
-export const selectUsers = (state) => state.users;
+//export const selectUsers = (state) => state.users;
 
 export default userSlice.reducer;
