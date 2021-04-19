@@ -21,7 +21,7 @@ config :api, APIWeb.Endpoint,
   http: [port: 4001],
   debug_errors: true,
   code_reloader: true,
-  check_origin: false,
+  check_origin: true,
   watchers: []
 
 # ## SSL Support
