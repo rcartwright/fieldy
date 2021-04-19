@@ -46,7 +46,7 @@ export default function DenseTable({users}) {
         </TableHead>
         <TableBody>
           {users.map((row) => (
-            <TableRow key={row.name}>
+            <TableRow key={row.email}>
               <TableCell component="th" scope="row">
                 Rachel
               </TableCell>
