@@ -23,6 +23,7 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 //import { UserList } from './features/list/Users';
 import { Users } from './pages/users/users'
+import { Organizations } from './pages/organizations/organizations'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 
@@ -34,6 +35,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Users} />
+        <Route exact path="/organizations" component={Organizations} />
       </Switch>
     </Router>
   )

@@ -136,7 +136,9 @@ const navigation = (
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
+    <Link href="/organizations" onClick={(e) => e.preventDefault}>
       <ListItemText primary="Organizations" />
+    </Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
