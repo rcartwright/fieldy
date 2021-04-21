@@ -11,6 +11,16 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import ListItem from '@material-ui/core/ListItem';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation
+} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,9 +33,13 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     flexDirection: 'column',
   },
+  tableLink: {
+    cursor: 'pointer'
+  }
 }));
 
-export const Organizations = ({error, organizations}) => {
+export const Organizations = () => {
+  let history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
   const orgData = useSelector(state => state.organizationState)
@@ -40,15 +54,6 @@ export const Organizations = ({error, organizations}) => {
     if (orgData.status === 'loading') {
         return <div style={{padding: '30px'}}>Loading...</div>;
     } else if (orgData.status === 'success') {
-      const data = orgData.organizations.map((row) => (
-        <TableRow key={row.id}>
-          <TableCell component="th" scope="row">
-            {row.name}
-          </TableCell>
-          <TableCell align="right">{row.is_active?.toString()}</TableCell>
-        </TableRow>
-      ))
-
       return (
         <Table className={classes.table} size="small" aria-label="organizations table">
           <TableHead>
@@ -58,7 +63,19 @@ export const Organizations = ({error, organizations}) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data}
+            {orgData.organizations.map((row) => (
+              <TableRow 
+                className={classes.tableLink}
+                key={row.id} 
+                hover
+                onClick={(event) => history.push(`/organizations/${row.id}`)}
+              >
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right">{row.is_active?.toString()}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       )
