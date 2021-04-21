@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchUsers } from './userAPI';
 
 const initialState =
@@ -28,17 +28,14 @@ export const userSlice = createSlice({
         state.hasErrors = false;
         state.users = action.payload.data;
       })
-      .addCase(fetchUsers.rejected), (state, action) => {
+      .addCase(fetchUsers.rejected, (state, action) => {
         state.status = 'error';
         state.hasErrors = true;
         state.users = [];
         state.error = action.error.message;
-      }
+      })
   },
 })
 
 export { fetchUsers };
-
-//export const { fetchUsers } = userSlice.actions;
-
 export default userSlice.reducer;

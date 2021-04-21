@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {fetchUsers, userSlice } from './../../features/users/userSlice';
+import { fetchUsers } from './../../features/users/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import Layout from '../../components/layout.js'
 import Title from '../../components/title';
@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
@@ -61,10 +60,6 @@ export default function DenseTable({users}) {
   );
 }
 
-function UsersList(props) {
-    
-}
-
 export function Users() {
     const dispatch = useDispatch();
     const userData = useSelector(state => state.userState)
@@ -87,26 +82,3 @@ export function Users() {
 
     return <Layout>{content}</Layout>
 }
-
-
-
-        //   <Grid container spacing={3}>
-        //     {/* Chart */}
-        //     <Grid item xs={12} md={8} lg={9}>
-        //       <Paper className={fixedHeightPaper}>
-        //         Chart
-        //       </Paper>
-        //     </Grid>
-        //     {/* Recent Deposits */}
-        //     <Grid item xs={12} md={4} lg={3}>
-        //       <Paper className={fixedHeightPaper}>
-        //         Deposits
-        //       </Paper>
-        //     </Grid>
-        //     {/* Recent Orders */}
-        //     <Grid item xs={12}>
-        //       <Paper className={classes.paper}>
-        //         Orders
-        //       </Paper>
-        //     </Grid>
-        //   </Grid>

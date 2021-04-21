@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchOrganizations } from './organizationAPI';
 
 const initialState =
@@ -28,12 +28,12 @@ export const organizationSlice = createSlice({
         state.hasErrors = false;
         state.organizations = action.payload.data;
       })
-      .addCase(fetchOrganizations.rejected), (state, action) => {
+      .addCase(fetchOrganizations.rejected, (state, action) => {
         state.status = 'error';
         state.hasErrors = true;
         state.organizations = [];
         state.error = action.error.message;
-      }
+      })
   },
 })
 
