@@ -127,13 +127,11 @@ const navigation = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component="a" href="/organizations">
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
-      <Link href="/organizations">
-        <ListItemText primary="Organizations" />
-      </Link>
+      <ListItemText primary="Organizations" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -141,13 +139,11 @@ const navigation = (
       </ListItemIcon>
       <ListItemText primary="Requests" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component="a" href="/users">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <Link href="/users">
-        <ListItemText primary="Users" />
-      </Link>
+      <ListItemText primary="Users" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
