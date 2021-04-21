@@ -5,7 +5,7 @@ const initialState =
 {
   status: 'idle',
   hasErrors: false,
-  users: [],
+  organizations: [],
   error: null
 }
 
@@ -13,9 +13,9 @@ export const organizationSlice = createSlice({
   name: 'organizations',
   initialState,
   reducers: {
-    // getUsers: (state) => {
-    //   state.users = [];
-    // },
+    selectOrganization: (state) => {
+      state.users = [];
+    },
   },
   extraReducers: (builder) => {
     return builder

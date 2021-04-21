@@ -13,7 +13,7 @@ export const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    getUsers: (state) => {
+    selectUser: (state) => {
         state.users = [];
     },
   },
