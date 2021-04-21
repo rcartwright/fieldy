@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {fetchUsers, userSlice } from './../../features/users/userSlice';
+import { fetchOrganizations } from './../../features/organizations/organizationSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import Layout from '../../components/layout.js'
 import Title from '../../components/title';
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DenseTable({users}) {
+function DenseTable({organizations}) {
   const classes = useStyles();
 
   return (
@@ -36,21 +36,19 @@ function DenseTable({users}) {
       <Grid item xs={12}>
         <Paper className={classes.paper}>
           <Title>Organizations</Title>
-          <Table className={classes.table} size="small" aria-label="users table">
+          <Table className={classes.table} size="small" aria-label="organizations table">
             <TableHead>
               <TableRow>
                 <TableCell fontWeight="fontWeightBold" variant="head">Name</TableCell>
-                <TableCell>Email</TableCell>
                 <TableCell align="right">Active?</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {users.map((row) => (
-                <TableRow key={row.email}>
+              {organizations.map((row) => (
+                <TableRow key={row.id}>
                   <TableCell component="th" scope="row">
-                    Rachel
+                    {row.name}
                   </TableCell>
-                  <TableCell>{row.email}</TableCell>
                   <TableCell align="right">{row.is_active?.toString()}</TableCell>
                 </TableRow>
               ))}
@@ -68,22 +66,22 @@ function UsersList(props) {
 
 export function Organizations() {
     const dispatch = useDispatch();
-    const userData = useSelector(state => state.userState)
+    const orgData = useSelector(state => state.organizationState)
 
     useEffect(() => {
-        if (userData.status === 'idle') {
-            dispatch(fetchUsers())
+        if (orgData.status === 'idle') {
+            dispatch(fetchOrganizations())
         }
-    }, [userData.status, dispatch])
+    }, [orgData.status, dispatch])
 
     let content;
-    if (userData.status === 'loading') {
+    if (orgData.status === 'loading') {
         content = <div>Loading...</div>;
-    } else if (userData.status === 'success') {
-        console.log('userData.users', userData.users)
-        content = <DenseTable users={userData.users} />;
-    } else if (userData.status === 'error') {
-        content = <div>{userData.error}</div>;
+    } else if (orgData.status === 'success') {
+        console.log('orgData.users', orgData.organizations)
+        content = <DenseTable organizations={orgData.organizations} />;
+    } else if (orgData.status === 'error') {
+        content = <div>{orgData.error}</div>;
     }
 
     return <Layout>{content}</Layout>

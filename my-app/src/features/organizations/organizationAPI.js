@@ -1,11 +1,9 @@
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchUsers = createAsyncThunk(
-  'users/fetchUsers',
+export const fetchOrganizations = createAsyncThunk(
+  'users/fetchOrganizations',
   async () => {
-    const url = `http://192.168.99.100:4001/api/users`;
-   // const url = `http://localhost:4001/api/users`;
+    const url = `http://192.168.99.100:4001/api/organizations`;
 
     const response = await fetch(url, {
           method: 'GET',
