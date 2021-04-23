@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { fetchOrganizations } from './../../features/organizations/organizationSlice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, connect } from 'react-redux';
 import Layout from '../../components/layout.js'
 import Title from '../../components/title';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ListItem from '@material-ui/core/ListItem';
+import OrganizationContainer from './../../containers/organizations';
 import {
   BrowserRouter as Router,
   Switch,
@@ -38,17 +39,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Organizations = () => {
-  let history = useHistory();
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const orgData = useSelector(state => state.organizationState)
 
-  useEffect(() => {
-      if (orgData.status === 'idle') {
-          dispatch(fetchOrganizations())
-      }
-  }, [orgData.status, dispatch])
+export const Organizations = (props) => {
+  console.log('props', props)
+  const classes = useStyles();
+  const orgData = props.organizations;
+
+  const goTo = (id) => {
+    props.setOrganization(id);
+    props.history.push(`/organizations/${id}`)
+  }
 
   const showTableContent = () => {
     if (orgData.status === 'loading') {
@@ -68,7 +68,7 @@ export const Organizations = () => {
                 className={classes.tableLink}
                 key={row.id} 
                 hover
-                onClick={(event) => history.push(`/organizations/${row.id}`)}
+                onClick={(event) => goTo(row.id)}
               >
                 <TableCell component="th" scope="row">
                   {row.name}
@@ -99,25 +99,5 @@ export const Organizations = () => {
 }
 
 
-// export function Organizations() {
-//     const dispatch = useDispatch();
-//     const orgData = useSelector(state => state.organizationState)
 
-//     useEffect(() => {
-//         if (orgData.status === 'idle') {
-//             dispatch(fetchOrganizations())
-//         }
-//     }, [orgData.status, dispatch])
-
-//     let content;
-//     if (orgData.status === 'loading') {
-//         content = <div>Loading...</div>;
-//     } else if (orgData.status === 'success') {
-//         console.log('orgData.users', orgData.organizations)
-//         content = <OrgTable organizations={orgData.organizations} />;
-//     } else if (orgData.status === 'error') {
-//         content = <div>{orgData.error}</div>;
-//     }
-
-//     return <Layout>{content}</Layout>
-// }
+export default connect(OrganizationContainer)(Organizations);
