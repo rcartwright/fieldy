@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { fetchOrganizations } from './../../features/organizations/organizationSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import Layout from '../../components/layout.js'
@@ -50,6 +50,25 @@ export const Organizations = () => {
       }
   }, [orgData.status, dispatch])
 
+  const [organization, setOrganization] = useState(null);
+
+  const setOrgById = (id) => {
+    console.log('id', id)
+    console.log('orgData.organizations', orgData.organizations)
+    const org = orgData.organizations.find(id);
+    console.log('org', org)
+    setOrganization(org);
+  }
+
+  const clearOrg = () => {
+    setOrganization(null);
+  }
+  
+  const goToOrg = (id) => {
+    setOrgById(id)
+    history.push(`/organizations/${id}`)
+  }
+
   const showTableContent = () => {
     if (orgData.status === 'loading') {
         return <div style={{padding: '30px'}}>Loading...</div>;
@@ -68,7 +87,7 @@ export const Organizations = () => {
                 className={classes.tableLink}
                 key={row.id} 
                 hover
-                onClick={(event) => history.push(`/organizations/${row.id}`)}
+                onClick={(event) => goToOrg(row.id)}
               >
                 <TableCell component="th" scope="row">
                   {row.name}
