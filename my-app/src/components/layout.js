@@ -206,6 +206,7 @@ const Layout = (props) => {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
+        {props.hero && props.hero}
         <Container maxWidth="lg" className={classes.container}>
             {props.children}
           <Box pt={4}>

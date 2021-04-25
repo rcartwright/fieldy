@@ -18,6 +18,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Layout from '../../components/layout.js';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,8 +31,23 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     flexDirection: 'column',
   },
+  hero: {
+    padding: theme.spacing(4),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'auto',
+    flexDirection: 'column',
+    backgroundColor: theme.palette.background.light,
+    borderBottom: `1px solid ${theme.palette.border.light}`
+  },
   tableLink: {
     cursor: 'pointer'
+  },
+  title: {
+    color: theme.palette.black.main,
+    fontSize: '39px',
+    fontWeight: 100,
   }
 }));
 
@@ -53,11 +69,19 @@ export const ShowOrganization = () => {
         return <div style={{padding: '30px'}}>Loading...</div>;
     }
     return (
-        <Layout>
+        <Layout 
+          hero= {
+            <div className={classes.hero}>
+              <Typography className={classes.title} component="h1" variant="h5" color="primary" gutterBottom>
+                {org.name}
+              </Typography>
+            </div>
+          }
+        >
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Title>{org.name}</Title>
+                <Title>Fields</Title>
               </Paper>
             </Grid>
           </Grid>
