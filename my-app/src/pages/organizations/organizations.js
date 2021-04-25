@@ -55,7 +55,7 @@ export const Organizations = () => {
   const setOrgById = (id) => {
     console.log('id', id)
     console.log('orgData.organizations', orgData.organizations)
-    const org = orgData.organizations.find(id);
+    const org = orgData.organizations.find((org) => org.id == id);
     console.log('org', org)
     setOrganization(org);
   }
