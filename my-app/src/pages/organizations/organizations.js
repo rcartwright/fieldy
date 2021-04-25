@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 export const Organizations = (props) => {
   console.log('props', props)
   const classes = useStyles();
-  const orgData = props.organizations;
+  const orgData = useSelector(state => state.organizations);
 
   const goTo = (id) => {
     props.setOrganization(id);
