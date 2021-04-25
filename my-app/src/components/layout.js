@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+    color: theme.palette.white.default,
   },
   toolbarIcon: {
     display: 'flex',
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+    color: theme.palette.white.default,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -71,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: 36,
+    color: theme.palette.white.default,
   },
   menuButtonHidden: {
     display: 'none',
@@ -79,6 +82,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawerPaper: {
+    color: theme.palette.white.default,
+    backgroundColor: theme.palette.primary.main,
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -88,6 +93,8 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   drawerPaperClose: {
+    color: theme.palette.white.default,
+    backgroundColor: theme.palette.primary.main,
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -123,31 +130,31 @@ const navigation = (
   <div>
     <ListItem button>
       <ListItemIcon>
-        <DashboardIcon />
+        <DashboardIcon style={{ color: '#fff' }} />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
     <ListItem button component="a" href="/organizations">
       <ListItemIcon>
-        <LayersIcon />
+        <LayersIcon style={{ color: '#fff' }} />
       </ListItemIcon>
       <ListItemText primary="Organizations" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <BarChartIcon />
+        <BarChartIcon style={{ color: '#fff' }} />
       </ListItemIcon>
       <ListItemText primary="Requests" />
     </ListItem>
     <ListItem button component="a" href="/users">
       <ListItemIcon>
-        <PeopleIcon />
+        <PeopleIcon style={{ color: '#fff' }} />
       </ListItemIcon>
       <ListItemText primary="Users" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <LayersIcon />
+        <LayersIcon style={{ color: '#fff' }} />
       </ListItemIcon>
       <ListItemText primary="Settings" />
     </ListItem>
@@ -197,7 +204,7 @@ const Layout = (props) => {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton style={{ color: '#fff'}} onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>

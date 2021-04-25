@@ -22,6 +22,9 @@ const theme = createMuiTheme({
     },
     black: {
       main: grey[900]
+    },
+    white: {
+      default: '#fff',
     }
   },
 });
