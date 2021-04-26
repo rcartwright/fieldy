@@ -63,4 +63,75 @@ defmodule API.AdminTest do
       assert %Ecto.Changeset{} = Admin.change_organization(organization)
     end
   end
+
+  describe "fields" do
+    alias API.Admin.Field
+
+    @valid_attrs %{address: "some address", address1: "some address1", city: "some city", is_active: true, name: "some name", state: "some state", zip: "some zip"}
+    @update_attrs %{address: "some updated address", address1: "some updated address1", city: "some updated city", is_active: false, name: "some updated name", state: "some updated state", zip: "some updated zip"}
+    @invalid_attrs %{address: nil, address1: nil, city: nil, is_active: nil, name: nil, state: nil, zip: nil}
+
+    def field_fixture(attrs \\ %{}) do
+      {:ok, field} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Admin.create_field()
+
+      field
+    end
+
+    test "list_fields/0 returns all fields" do
+      field = field_fixture()
+      assert Admin.list_fields() == [field]
+    end
+
+    test "get_field!/1 returns the field with given id" do
+      field = field_fixture()
+      assert Admin.get_field!(field.id) == field
+    end
+
+    test "create_field/1 with valid data creates a field" do
+      assert {:ok, %Field{} = field} = Admin.create_field(@valid_attrs)
+      assert field.address == "some address"
+      assert field.address1 == "some address1"
+      assert field.city == "some city"
+      assert field.is_active == true
+      assert field.name == "some name"
+      assert field.state == "some state"
+      assert field.zip == "some zip"
+    end
+
+    test "create_field/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Admin.create_field(@invalid_attrs)
+    end
+
+    test "update_field/2 with valid data updates the field" do
+      field = field_fixture()
+      assert {:ok, %Field{} = field} = Admin.update_field(field, @update_attrs)
+      assert field.address == "some updated address"
+      assert field.address1 == "some updated address1"
+      assert field.city == "some updated city"
+      assert field.is_active == false
+      assert field.name == "some updated name"
+      assert field.state == "some updated state"
+      assert field.zip == "some updated zip"
+    end
+
+    test "update_field/2 with invalid data returns error changeset" do
+      field = field_fixture()
+      assert {:error, %Ecto.Changeset{}} = Admin.update_field(field, @invalid_attrs)
+      assert field == Admin.get_field!(field.id)
+    end
+
+    test "delete_field/1 deletes the field" do
+      field = field_fixture()
+      assert {:ok, %Field{}} = Admin.delete_field(field)
+      assert_raise Ecto.NoResultsError, fn -> Admin.get_field!(field.id) end
+    end
+
+    test "change_field/1 returns a field changeset" do
+      field = field_fixture()
+      assert %Ecto.Changeset{} = Admin.change_field(field)
+    end
+  end
 end
