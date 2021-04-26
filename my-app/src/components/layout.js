@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: theme.palette.background.dark
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -83,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     color: theme.palette.white.default,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.background.dark,
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -94,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaperClose: {
     color: theme.palette.white.default,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.background.dark,
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -187,7 +188,7 @@ const Layout = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            Booking League
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">

@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer'
   },
   title: {
-    color: theme.palette.black.main,
+    color: theme.palette.background.dark,
     fontSize: '39px',
     fontWeight: 100,
   }
