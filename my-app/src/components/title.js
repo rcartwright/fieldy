@@ -5,7 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    fontWeight: 600
+    fontWeight: 600,
+    color: theme.palette.background.dark,
+    marginBottom: '20px'
   }
 }));
 

@@ -9,6 +9,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ListItem from '@material-ui/core/ListItem';
@@ -35,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
   },
   tableLink: {
     cursor: 'pointer'
+  },
+  tableCell: {
+    fontWeight: '600',
+    background: '#fafafa',
+    padding: '10px 16px'
   }
 }));
 
@@ -53,10 +59,7 @@ export const Organizations = () => {
   const [organization, setOrganization] = useState(null);
 
   const setOrgById = (id) => {
-    console.log('id', id)
-    console.log('orgData.organizations', orgData.organizations)
     const org = orgData.organizations.find((org) => org.id == id);
-    console.log('org', org)
     setOrganization(org);
   }
 
@@ -74,11 +77,11 @@ export const Organizations = () => {
         return <div style={{padding: '30px'}}>Loading...</div>;
     } else if (orgData.status === 'success') {
       return (
-        <Table className={classes.table} size="small" aria-label="organizations table">
+        <Table className={classes.table} size="medium" aria-label="organizations table">
           <TableHead>
             <TableRow>
-              <TableCell fontWeight="fontWeightBold" variant="head">Name</TableCell>
-              <TableCell align="right">Active?</TableCell>
+              <TableCell className={classes.tableCell} fontWeight="fontWeightBold" variant="head">Name</TableCell>
+              <TableCell className={classes.tableCell} align="right">Active?</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -107,36 +110,12 @@ export const Organizations = () => {
     <Layout>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Title>Organizations</Title>
+          <Title>Your Organizations</Title>
+          <TableContainer component={Paper}>
             {showTableContent()}
-          </Paper>
+          </TableContainer>
         </Grid>
       </Grid>
     </Layout>
   );
 }
-
-
-// export function Organizations() {
-//     const dispatch = useDispatch();
-//     const orgData = useSelector(state => state.organizationState)
-
-//     useEffect(() => {
-//         if (orgData.status === 'idle') {
-//             dispatch(fetchOrganizations())
-//         }
-//     }, [orgData.status, dispatch])
-
-//     let content;
-//     if (orgData.status === 'loading') {
-//         content = <div>Loading...</div>;
-//     } else if (orgData.status === 'success') {
-//         console.log('orgData.users', orgData.organizations)
-//         content = <OrgTable organizations={orgData.organizations} />;
-//     } else if (orgData.status === 'error') {
-//         content = <div>{orgData.error}</div>;
-//     }
-
-//     return <Layout>{content}</Layout>
-// }
