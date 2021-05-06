@@ -6,11 +6,12 @@ import {
   useParams
 } from "react-router-dom";
 import Title from '../../components/title';
+import Table from '../../components/table';
 import React, { useEffect, useState } from 'react'
 import { fetchOrganizations } from './../../features/organizations/organizationSlice';
+import { fetchFields } from './../../features/fields/fieldSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
@@ -55,22 +56,31 @@ export const ShowOrganization = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     let { id } = useParams();
+    const fieldData = useSelector(state => state.fieldState)
     const orgData = useSelector(state => state.organizationState)
 
     useEffect(() => {
+      if (fieldData.status === 'idle') {
+        dispatch(fetchFields())
+      } else 
       if (orgData.status === 'idle') {
         dispatch(fetchOrganizations())
       }
-    }, [orgData.status, dispatch])
+    }, [orgData.status, fieldData.status, dispatch])
 
     const org = orgData.organizations.find((org) => org.id == id);
+    console.log('fieldData', fieldData)
 
-    if (orgData.status === 'loading' || orgData.status === 'idle') {
+    if (
+      fieldData.status === 'loading' || 
+        fieldData.status === 'idle' || 
+        orgData.status === 'loading' || 
+        orgData.status === 'idle') {
         return <div style={{padding: '30px'}}>Loading...</div>;
     }
     return (
         <Layout 
-          hero= {
+          hero={
             <div className={classes.hero}>
               <Typography className={classes.title} component="h1" variant="h5" color="primary" gutterBottom>
                 {org.name}
@@ -80,9 +90,8 @@ export const ShowOrganization = () => {
         >
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Title>Fields</Title>
-              </Paper>
+              <Title>Fields</Title>
+              <Table status={fieldData.status} rows={fieldData.fields} headerColumns={[{name: 'hey'}]} />
             </Grid>
           </Grid>
         </Layout>
