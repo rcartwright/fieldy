@@ -67,10 +67,11 @@ const Table = (
         <MUITable className={classes.table} size="medium" aria-label="organizations table">
           <TableHead>
             <TableRow>
-              <TableCell className={classes.tableCell}>name</TableCell>
               {
-                ([{name: 'hey'}]).map((col) => {
-                  <TableCell className={classes.tableCell}>{col.name}</TableCell>
+                headerColumns.map((col) => {
+                  return (
+                    <TableCell className={classes.tableCell}  align={col.align}>{col.name}</TableCell>
+                  )
                 })
               }
             </TableRow>
@@ -82,11 +83,15 @@ const Table = (
                 key={row.id} 
                 hover
                 onClick={(event) => goToItem(row.id)}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.is_active?.toString()}</TableCell>
+              > {row.map((column, index) => {
+                console.log('column', column)
+                return (
+                  <TableCell align={column.align} component="th" scope="row">
+                    {column.value}
+                  </TableCell>
+                )
+              })
+              }
               </TableRow>
             ))}
           </TableBody>

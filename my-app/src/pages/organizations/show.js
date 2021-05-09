@@ -68,6 +68,62 @@ export const ShowOrganization = () => {
       }
     }, [orgData.status, fieldData.status, dispatch])
 
+    const fields = fieldData.fields.map((field) => {
+      // return Object.entries(field).map(([key, val]) => {
+      //   console.log('key', key)
+      //   const obj = {
+      //     value: val?.toString(), name: key
+      //   }
+      //   if (key === 'is_active') {
+      //     return {...obj, align: 'right'}
+      //   }
+      //   return obj;
+      // })
+      return [
+        {
+          name: 'Name',
+          value: field.name,
+          align: 'left',
+        },
+        {
+          name: 'Address',
+          value: field.address,
+          align: 'left',
+        },
+        {
+          name: 'Address1',
+          value: field.address1,
+          align: 'left',
+        },
+        {
+          name: 'City',
+          value: field.city
+        },
+        {
+          name: 'State',
+          value: field.state
+        },
+        {
+          name: 'zipCode',
+          value: field.zip
+        },
+        {
+          name: 'is_active',
+          value: 'true',
+          align: 'right',
+        }
+
+      ]
+
+
+        // city: field.city,
+        // state: field.state,
+        // zipCode: field.zipCode,
+        // isActive: field.is_active?.toString(),
+        // align: 
+      
+    })
+
     const org = orgData.organizations.find((org) => org.id == id);
     console.log('fieldData', fieldData)
 
@@ -91,7 +147,7 @@ export const ShowOrganization = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Title>Fields</Title>
-              <Table status={fieldData.status} rows={fieldData.fields} headerColumns={[{name: 'hey'}]} />
+              <Table status={fieldData.status} rows={fields} headerColumns={[{name: 'Name'}, {name: 'Street'}, {name: 'Street1'}, {name: 'City'}, {name: 'State'}, {name: 'Zip Code'}, {name: 'Status', align: 'right'}]} />
             </Grid>
           </Grid>
         </Layout>
