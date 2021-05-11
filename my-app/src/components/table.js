@@ -43,15 +43,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Table = (
- { rows,
+const Table = ({ 
+  rows,
   headerColumns,
   status,
   error,
   setItemById,
   clearItem,
-  goToItem }
-) => {
+  goToItem 
+}) => {
       console.log('rows', rows)
     console.log('hearderCol', headerColumns)
 
@@ -83,7 +83,7 @@ const Table = (
                 key={row.id} 
                 hover
                 onClick={(event) => goToItem(row.id)}
-              > {row.map((column, index) => {
+              > {row.rows.map((column, index) => {
                 console.log('column', column)
                 return (
                   <TableCell align={column.align} component="th" scope="row">

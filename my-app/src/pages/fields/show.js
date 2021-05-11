@@ -53,8 +53,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const ShowOrganization = () => {
-    let history = useHistory();
+export const ShowField = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     let { id } = useParams();
@@ -70,101 +69,20 @@ export const ShowOrganization = () => {
       }
     }, [orgData.status, fieldData.status, dispatch])
 
-
-  const [field, setField] = useState(null);
-
-  const setFieldById = (id) => {
     const field = fieldData.fields.find((field) => field.id == id);
-    setField(field);
-  }
 
-  const goToField = (id) => {
-    setFieldById(id)
-    history.push(`/fields/${id}`)
-  }
-
-  const fields = fieldData.fields.map((field) => {
-    return {
-      id: field.id,
-      rows: [
-        {
-          name: 'Name',
-          value: field.name,
-          align: 'left',
-        },
-        {
-          name: 'Address',
-          value: field.address,
-          align: 'left',
-        },
-        {
-          name: 'Address1',
-          value: field.address1,
-          align: 'left',
-        },
-        {
-          name: 'City',
-          value: field.city
-        },
-        {
-          name: 'State',
-          value: field.state
-        },
-        {
-          name: 'zipCode',
-          value: field.zip
-        },
-        {
-          name: 'is_active',
-          value: 'true',
-          align: 'right',
-        }
-      ]
-    }
-  }
-);
-
-    const org = orgData.organizations.find((org) => org.id == id);
-    console.log('fieldData', fieldData)
-
-    if (
-      fieldData.status === 'loading' || 
-        fieldData.status === 'idle' || 
-        orgData.status === 'loading' || 
-        orgData.status === 'idle') {
-        return <div style={{padding: '30px'}}>Loading...</div>;
-    }
     return (
         <Layout 
           hero={
             <div className={classes.hero}>
               <Typography className={classes.title} component="h1" variant="h5" color="primary" gutterBottom>
-                {org.name}
+                {field.name}
               </Typography>
             </div>
           }
         >
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Title>Fields</Title>
-              <Table 
-                status={fieldData.status} 
-                rows={fields} 
-                goToItem={goToField}
-                headerColumns={
-                  [
-                    {name: 'Name'}, 
-                    {name: 'Street'}, 
-                    {name: 'Street1'}, 
-                    {name: 'City'}, 
-                    {name: 'State'}, 
-                    {name: 'Zip Code'}, 
-                    {name: 'Status', align: 'right'}
-                  ]
-                } 
-              />
-            </Grid>
-          </Grid>
+          Hey
         </Layout>
     )
+
 }
