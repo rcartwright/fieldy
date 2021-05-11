@@ -70,6 +70,7 @@ export const ShowField = () => {
     }, [orgData.status, fieldData.status, dispatch])
 
     const field = fieldData.fields.find((field) => field.id == id);
+    console.log('field', field)
 
     return (
         <Layout 
