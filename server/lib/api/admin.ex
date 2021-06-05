@@ -35,7 +35,7 @@ defmodule API.Admin do
       ** (Ecto.NoResultsError)
 
   """
-  def get_organization!(id), do: Repo.get!(Organization, id)
+  def get_organization!(id), do: Repo.get!(Organization, id) |> Repo.preload(:fields)
 
   @doc """
   Creates a organization.

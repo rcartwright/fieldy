@@ -12,6 +12,7 @@ defmodule API.Admin.Field do
     field :name, :string
     field :state, :string
     field :zip, :string
+    belongs_to(:organization, Organization)
 
     timestamps()
   end

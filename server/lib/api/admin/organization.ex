@@ -7,6 +7,7 @@ defmodule API.Admin.Organization do
   schema "organizations" do
     field :is_active, :boolean, default: false
     field :name, :string
+    has_many(:fields, Field, on_replace: :delete)
 
     timestamps()
   end
