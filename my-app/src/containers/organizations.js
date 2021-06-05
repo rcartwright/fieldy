@@ -10,7 +10,7 @@ import {
   useHistory,
   useLocation
 } from "react-router-dom";
-
+export default connect(mapStateToProps, { fetchOrganizations, setOrgById, clearOrg})(OrganizationContainer);
 const OrganizationContainer = () => {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -40,5 +40,3 @@ const mapStateToProps = (state) => {
     organization: organization
   };
 };
-
-export default connect(mapStateToProps, { fetchOrganizations, setOrgById, clearOrg})(OrganizationContainer);

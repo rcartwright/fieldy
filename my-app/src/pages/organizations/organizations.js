@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { fetchOrganizations } from './../../features/organizations/organizationSlice';
-import { useSelector, useDispatch } from 'react-redux';
-import Layout from '../../components/layout.js'
-import Title from '../../components/title';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableContainer from '@material-ui/core/TableContainer';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import ListItem from '@material-ui/core/ListItem';
+import React, { useEffect, useState } from "react";
+import { fetchOrganizations } from "../../features/organizations/organizationSlice";
+import { useSelector, useDispatch } from "react-redux";
+import Layout from "../../components/layout.js";
+import Title from "../../components/title";
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableContainer from "@material-ui/core/TableContainer";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import ListItem from "@material-ui/core/ListItem";
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,24 +23,23 @@ import {
   useLocation
 } from "react-router-dom";
 
-
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 650,
+    minWidth: 650
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column"
   },
   tableLink: {
-    cursor: 'pointer'
+    cursor: "pointer"
   },
   tableCell: {
-    fontWeight: '600',
-    background: '#fafafa',
-    padding: '10px 16px'
+    fontWeight: "600",
+    background: "#fafafa",
+    padding: "10px 16px"
   }
 }));
 
@@ -48,47 +47,59 @@ export const Organizations = () => {
   let history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
-  const orgData = useSelector(state => state.organizationState)
+  const orgData = useSelector((state) => state.organizationState);
 
   useEffect(() => {
-      if (orgData.status === 'idle') {
-          dispatch(fetchOrganizations())
-      }
-  }, [orgData.status, dispatch])
+    if (orgData.status === "idle") {
+      dispatch(fetchOrganizations());
+    }
+  }, [orgData.status, dispatch]);
 
   const [organization, setOrganization] = useState(null);
 
   const setOrgById = (id) => {
     const org = orgData.organizations.find((org) => org.id == id);
     setOrganization(org);
-  }
+  };
 
   const clearOrg = () => {
     setOrganization(null);
-  }
-  
+  };
+
   const goToOrg = (id) => {
-    setOrgById(id)
-    history.push(`/organizations/${id}`)
-  }
+    setOrgById(id);
+    history.push(`/organizations/${id}`);
+  };
 
   const showTableContent = () => {
-    if (orgData.status === 'loading') {
-        return <div style={{padding: '30px'}}>Loading...</div>;
-    } else if (orgData.status === 'success') {
+    if (orgData.status === "loading") {
+      return <div style={{ padding: "30px" }}>Loading...</div>;
+    } else if (orgData.status === "success") {
       return (
-        <Table className={classes.table} size="medium" aria-label="organizations table">
+        <Table
+          className={classes.table}
+          size="medium"
+          aria-label="organizations table"
+        >
           <TableHead>
             <TableRow>
-              <TableCell className={classes.tableCell} fontWeight="fontWeightBold" variant="head">Name</TableCell>
-              <TableCell className={classes.tableCell} align="right">Active?</TableCell>
+              <TableCell
+                className={classes.tableCell}
+                fontWeight="fontWeightBold"
+                variant="head"
+              >
+                Name
+              </TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                Active?
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {orgData.organizations.map((row) => (
-              <TableRow 
+              <TableRow
                 className={classes.tableLink}
-                key={row.id} 
+                key={row.id}
                 hover
                 onClick={(event) => goToOrg(row.id)}
               >
@@ -100,11 +111,11 @@ export const Organizations = () => {
             ))}
           </TableBody>
         </Table>
-      )
-    } else if (orgData.status === 'error') {
-        return <div>{orgData.error}</div>;
+      );
+    } else if (orgData.status === "error") {
+      return <div>{orgData.error}</div>;
     }
-  }
+  };
 
   return (
     <Layout>
@@ -118,4 +129,4 @@ export const Organizations = () => {
       </Grid>
     </Layout>
   );
-}
+};
