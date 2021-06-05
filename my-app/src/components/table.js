@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import Layout from './layout.js'
-import Title from './title';
-import { makeStyles } from '@material-ui/core/styles';
-import MUITable from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableContainer from '@material-ui/core/TableContainer';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import ListItem from '@material-ui/core/ListItem';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import MUITable from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableContainer from "@material-ui/core/TableContainer";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import ListItem from "@material-ui/core/ListItem";
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,9 +17,10 @@ import {
   Link,
   Redirect,
   useHistory,
-  useLocation
+  useLocation,
 } from "react-router-dom";
-
+import Title from "./title";
+import Layout from "./layout.js";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -29,84 +28,89 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
   },
   tableLink: {
-    cursor: 'pointer'
+    cursor: "pointer",
   },
   tableCell: {
-    fontWeight: '600',
-    background: '#fafafa',
-    padding: '10px 16px'
-  }
+    fontWeight: "600",
+    background: "#fafafa",
+    padding: "10px 16px",
+  },
 }));
 
-const Table = ({ 
+const Table = ({
   rows,
   headerColumns,
   status,
   error,
   setItemById,
   clearItem,
-  goToItem 
+  goToItem,
 }) => {
-      console.log('rows', rows)
-    console.log('hearderCol', headerColumns)
+  console.log("rows", rows);
+  console.log("hearderCol", headerColumns);
 
   const ShowTableContent = (rows, headerColumns) => {
     const classes = useStyles();
-    console.log('rows', rows)
-    console.log('hearderCol', headerColumns)
+    console.log("rows", rows);
+    console.log("hearderCol", headerColumns);
 
-    if (status === 'loading') {
-        return <div style={{padding: '30px'}}>Loading...</div>;
-    } else if (status === 'success') {
+    if (status === "loading") {
+      return <div style={{ padding: "30px" }}>Loading...</div>;
+    }
+    if (status === "success") {
       return (
-        <MUITable className={classes.table} size="medium" aria-label="organizations table">
+        <MUITable
+          className={classes.table}
+          size="medium"
+          aria-label="organizations table"
+        >
           <TableHead>
             <TableRow>
-              {
-                headerColumns.map((col) => {
-                  return (
-                    <TableCell className={classes.tableCell}  align={col.align}>{col.name}</TableCell>
-                  )
-                })
-              }
+              {headerColumns.map((col) => (
+                <TableCell className={classes.tableCell} align={col.align}>
+                  {col.name}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow 
+              <TableRow
                 className={classes.tableLink}
-                key={row.id} 
+                key={row.id}
                 hover
                 onClick={(event) => goToItem(row.id)}
-              > {row.rows.map((column, index) => {
-                console.log('column', column)
-                return (
-                  <TableCell align={column.align} component="th" scope="row">
-                    {column.value}
-                  </TableCell>
-                )
-              })
-              }
+              >
+                {" "}
+                {row.rows.map((column, index) => {
+                  console.log("column", column);
+                  return (
+                    <TableCell align={column.align} component="th" scope="row">
+                      {column.value}
+                    </TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableBody>
         </MUITable>
-      )
-    } else if (status === 'error') {
-        return <div>{error}</div>;
+      );
     }
-  }
+    if (status === "error") {
+      return <div>{error}</div>;
+    }
+  };
 
   return (
     <TableContainer component={Paper}>
       {ShowTableContent(rows, headerColumns)}
     </TableContainer>
   );
-}
+};
 
-export default Table
+export default Table;

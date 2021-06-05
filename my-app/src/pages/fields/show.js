@@ -7,11 +7,7 @@ import {
   useHistory,
 } from "react-router-dom";
 import { Formik } from "formik";
-import Title from "../../components/title";
-import Table from "../../components/table";
 import React, { useEffect, useState } from "react";
-import { fetchOrganizations } from "./../../features/organizations/organizationSlice";
-import { fetchFields } from "./../../features/fields/fieldSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import TableBody from "@material-ui/core/TableBody";
@@ -19,10 +15,14 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { TextField, Button, Container, CssBaseline } from "@material-ui/core";
-import Layout from "../../components/layout.js";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import Layout from "../../components/layout.js";
+import { fetchFields } from "../../features/fields/fieldSlice";
+import { fetchOrganizations } from "../../features/organizations/organizationSlice";
+import Table from "../../components/table";
+import Title from "../../components/title";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 export const ShowField = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  let { id } = useParams();
+  const { id } = useParams();
   const fieldData = useSelector((state) => state.fieldState);
   const orgData = useSelector((state) => state.organizationState);
 

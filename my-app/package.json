@@ -22,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier-eslint --eslint-config-path ./.eslintrc.js --write '**/*.js'",
+    "lint": "eslint . --ext .js --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,7 +42,6 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.3.1",
     "eslint": "^7.11.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -48,6 +49,8 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^1.7.0"
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "^2.3.1",
+    "prettier-eslint": "10.1.0"
   }
 }

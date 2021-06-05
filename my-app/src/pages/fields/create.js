@@ -6,52 +6,51 @@ import {
   useParams,
   useHistory,
 } from "react-router-dom";
-import { Formik } from 'formik';
-import Title from '../../components/title';
-import Table from '../../components/table';
-import React, { useEffect, useState } from 'react';
-import { fetchOrganizations } from './../../features/organizations/organizationSlice';
-import { fetchFields } from './../../features/fields/fieldSlice';
-import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import {TextField, Button, Container, CssBaseline } from '@material-ui/core';
-import Layout from '../../components/layout.js';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-
+import { Formik } from "formik";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import { TextField, Button, Container, CssBaseline } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import Layout from "../../components/layout.js";
+import { fetchFields } from "../../features/fields/fieldSlice";
+import { fetchOrganizations } from "../../features/organizations/organizationSlice";
+import Table from "../../components/table";
+import Title from "../../components/title";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
   },
   hero: {
     padding: theme.spacing(4),
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'auto',
-    flexDirection: 'column',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "auto",
+    flexDirection: "column",
     backgroundColor: theme.palette.background.light,
-    borderBottom: `1px solid ${theme.palette.border.light}`
+    borderBottom: `1px solid ${theme.palette.border.light}`,
   },
   tableLink: {
-    cursor: 'pointer'
+    cursor: "pointer",
   },
   title: {
     color: theme.palette.background.dark,
-    fontSize: '39px',
+    fontSize: "39px",
     fontWeight: 100,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   paper: {
@@ -67,49 +66,53 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ShowField = () => {
-    const classes = useStyles();
-    const dispatch = useDispatch();
-    let { id } = useParams();
-    const fieldData = useSelector(state => state.fieldState)
-    const orgData = useSelector(state => state.organizationState)
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const fieldData = useSelector((state) => state.fieldState);
+  const orgData = useSelector((state) => state.organizationState);
 
+  useEffect(() => {
+    if (fieldData.status === "idle") {
+      dispatch(fetchFields());
+    } else if (orgData.status === "idle") {
+      dispatch(fetchOrganizations());
+    }
+  }, [orgData.status, fieldData.status, dispatch]);
 
-    useEffect(() => {
-      if (fieldData.status === 'idle') {
-        dispatch(fetchFields())
-      } else 
-      if (orgData.status === 'idle') {
-        dispatch(fetchOrganizations())
+  const field = fieldData.fields.find((field) => field.id == id);
+  console.log("field", field);
+
+  return (
+    <Layout
+      hero={
+        <div className={classes.hero}>
+          <Typography
+            className={classes.title}
+            component="h1"
+            variant="h5"
+            color="primary"
+            gutterBottom
+          >
+            {field.name}
+          </Typography>
+        </div>
       }
-    }, [orgData.status, fieldData.status, dispatch])
-
-    const field = fieldData.fields.find((field) => field.id == id);
-    console.log('field', field)
-
-    return (
-        <Layout 
-          hero={
-            <div className={classes.hero}>
-              <Typography className={classes.title} component="h1" variant="h5" color="primary" gutterBottom>
-                {field.name}
-              </Typography>
-            </div>
-          }
-        >
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-          <Paper className={classes.paper}>
+    >
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Paper className={classes.paper}>
           <Title>Add Field</Title>
           <Formik
-            initialValues={{ email: '', password: '' }}
-            validate={values => {
+            initialValues={{ email: "", password: "" }}
+            validate={(values) => {
               const errors = {};
               if (!values.email) {
-                errors.email = 'Required';
+                errors.email = "Required";
               } else if (
                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
               ) {
-                errors.email = 'Invalid email address';
+                errors.email = "Invalid email address";
               }
               return errors;
             }}
@@ -134,12 +137,12 @@ export const ShowField = () => {
               <form className={classes.form} onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField 
+                    <TextField
                       id="outlined-basic"
-                      label="Name" 
-                      variant="outlined" 
+                      label="Name"
+                      variant="outlined"
                       name="name"
-                      size="large" 
+                      size="large"
                       margin="normal"
                       required
                       fullWidth
@@ -149,12 +152,12 @@ export const ShowField = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField 
+                    <TextField
                       id="outlined-basic"
-                      label="Street" 
-                      variant="outlined" 
+                      label="Street"
+                      variant="outlined"
                       name="street"
-                      size="large" 
+                      size="large"
                       margin="normal"
                       fullWidth
                       onChange={handleChange}
@@ -163,12 +166,12 @@ export const ShowField = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField 
+                    <TextField
                       id="outlined-basic"
-                      label="Street1" 
-                      variant="outlined" 
+                      label="Street1"
+                      variant="outlined"
                       name="street1"
-                      size="large" 
+                      size="large"
                       margin="normal"
                       fullWidth
                       onChange={handleChange}
@@ -177,12 +180,12 @@ export const ShowField = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField 
+                    <TextField
                       id="outlined-basic"
-                      label="City" 
-                      variant="outlined" 
+                      label="City"
+                      variant="outlined"
                       name="city"
-                      size="large" 
+                      size="large"
                       margin="normal"
                       fullWidth
                       onChange={handleChange}
@@ -191,12 +194,12 @@ export const ShowField = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField 
+                    <TextField
                       id="outlined-basic"
-                      label="State" 
-                      variant="outlined" 
+                      label="State"
+                      variant="outlined"
                       name="state"
-                      size="large" 
+                      size="large"
                       margin="normal"
                       fullWidth
                       onChange={handleChange}
@@ -205,12 +208,12 @@ export const ShowField = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField 
+                    <TextField
                       id="outlined-basic"
-                      label="Zip Code" 
-                      variant="outlined" 
+                      label="Zip Code"
+                      variant="outlined"
                       name="zip"
-                      size="large" 
+                      size="large"
                       margin="normal"
                       fullWidth
                       onChange={handleChange}
@@ -221,7 +224,12 @@ export const ShowField = () => {
                   <Grid item xs={12}>
                     {errors.name && touched.name && errors.name}
                     {errors.street && touched.street && errors.street}
-                    <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
                       Submit
                     </Button>
                   </Grid>
@@ -229,9 +237,8 @@ export const ShowField = () => {
               </form>
             )}
           </Formik>
-          </Paper>
-          </Container>
-        </Layout>
-    )
-
-}
+        </Paper>
+      </Container>
+    </Layout>
+  );
+};
