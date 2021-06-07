@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Users } from "./pages/users/users";
+import Users from "./pages/users/users";
 import { Organizations } from "./pages/organizations/organizations";
 import { ShowOrganization } from "./pages/organizations/show";
 import { ShowField } from "./pages/fields/show";

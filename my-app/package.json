@@ -25,7 +25,9 @@
     "eject": "react-scripts eject",
     "fix": "yarn fix:eslint && yarn fix:prettier",
     "fix:eslint": "eslint --fix \"**/*.*\"",
+    "fix:prettier": "prettier --write \"**/*.js\"",
     "lint": "yarn lint:eslint && yarn lint:prettier",
+    "lint:eslint": "eslint \"**/*.js\"",
     "lint:prettier": "prettier --check \"**/*.*\""
   },
   "eslintConfig": {

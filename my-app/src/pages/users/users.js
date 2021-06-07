@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function DenseTable({ users }) {
+function DenseTable({ users }) {
   const classes = useStyles();
 
   return (
@@ -55,6 +55,7 @@ export default function DenseTable({ users }) {
                   </TableCell>
                   <TableCell>{row.email}</TableCell>
                   <TableCell align="right">
+                    {/*// eslint-disable-next-line*/}
                     {row.is_active?.toString()}
                   </TableCell>
                 </TableRow>
@@ -67,7 +68,7 @@ export default function DenseTable({ users }) {
   );
 }
 
-export function Users() {
+const Users = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userState);
 
@@ -88,4 +89,6 @@ export function Users() {
   }
 
   return <Layout>{content}</Layout>;
-}
+};
+
+export default Users;

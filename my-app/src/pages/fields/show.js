@@ -106,7 +106,7 @@ const ShowField = () => {
             onSubmit={(values, { setSubmitting }) => {
               JSON.stringify(values, null, 2);
               setTimeout(() => {
-                /* eslint-disable */
+                // eslint-disable-next-line
                 alert(JSON.stringify(values, null, 2));
                 setSubmitting(false);
               }, 400);
@@ -119,7 +119,7 @@ const ShowField = () => {
               handleChange,
               handleBlur,
               handleSubmit,
-              isSubmitting
+              isSubmitting,
               /* and other goodies */
             }) => (
               <form className={classes.form} onSubmit={handleSubmit}>

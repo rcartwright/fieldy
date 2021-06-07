@@ -20,6 +20,7 @@ ReactDOM.render(
       </Provider>
     </ThemeProvider>
   </React.StrictMode>,
+  // eslint-disable-next-line
   document.getElementById("root")
 );
 

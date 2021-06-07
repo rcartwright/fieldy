@@ -66,7 +66,7 @@ const CreateField = () => {
     }
   }, [orgData.status, fieldData.status, dispatch]);
 
-  const field = fieldData.fields.find((field) => field.id == id);
+  const field = fieldData.fields.find((f) => f.id === id);
   console.log("field", field);
 
   return (
@@ -105,7 +105,7 @@ const CreateField = () => {
             onSubmit={(values, { setSubmitting }) => {
               JSON.stringify(values, null, 2);
               setTimeout(() => {
-                /* eslint-disable */
+                // eslint-disable-next-line
                 alert(JSON.stringify(values, null, 2));
                 setSubmitting(false);
               }, 400);
@@ -118,7 +118,7 @@ const CreateField = () => {
               handleChange,
               handleBlur,
               handleSubmit,
-              isSubmitting
+              isSubmitting,
               /* and other goodies */
             }) => (
               <form className={classes.form} onSubmit={handleSubmit}>
