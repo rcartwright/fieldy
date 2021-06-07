@@ -15,14 +15,14 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 650,
+    minWidth: 650
   },
   paper: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
-    flexDirection: "column",
-  },
+    flexDirection: "column"
+  }
 }));
 
 export default function DenseTable({ users }) {

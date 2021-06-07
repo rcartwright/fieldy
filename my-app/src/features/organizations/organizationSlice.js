@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchOrganizations } from "./organizationAPI";
 
@@ -5,7 +6,7 @@ const initialState = {
   status: "idle",
   hasErrors: false,
   organizations: [],
-  error: null,
+  error: null
 };
 
 export const organizationSlice = createSlice({
@@ -14,7 +15,7 @@ export const organizationSlice = createSlice({
   reducers: {
     selectOrganization: (state) => {
       state.users = [];
-    },
+    }
   },
   extraReducers: (builder) =>
     builder
@@ -32,7 +33,7 @@ export const organizationSlice = createSlice({
         state.hasErrors = true;
         state.organizations = [];
         state.error = action.error.message;
-      }),
+      })
 });
 
 export { fetchOrganizations };

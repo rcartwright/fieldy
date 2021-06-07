@@ -4,10 +4,10 @@ export const fetchOrganizations = createAsyncThunk(
   "users/fetchOrganizations",
   async () => {
     const url = `http://192.168.99.100:4001/api/organizations`;
-
+    /* eslint-disable */
     const response = await fetch(url, {
       method: "GET",
-      credentials: "same-origin",
+      credentials: "same-origin"
     })
       .then((response) => response.json())
       .then((responseJson) => {

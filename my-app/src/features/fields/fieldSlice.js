@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchFields } from "./fieldAPI";
 
@@ -5,7 +6,7 @@ const initialState = {
   status: "idle",
   hasErrors: false,
   fields: [],
-  error: null,
+  error: null
 };
 
 export const fieldSlice = createSlice({
@@ -14,7 +15,7 @@ export const fieldSlice = createSlice({
   reducers: {
     selectField: (state) => {
       state.users = [];
-    },
+    }
   },
   extraReducers: (builder) =>
     builder
@@ -32,7 +33,7 @@ export const fieldSlice = createSlice({
         state.hasErrors = true;
         state.fields = [];
         state.error = action.error.message;
-      }),
+      })
 });
 
 export { fetchFields };

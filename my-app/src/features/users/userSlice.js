@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchUsers } from "./userAPI";
 
@@ -5,7 +6,7 @@ const initialState = {
   status: "idle",
   hasErrors: false,
   users: [],
-  error: null,
+  error: null
 };
 
 export const userSlice = createSlice({
@@ -14,7 +15,7 @@ export const userSlice = createSlice({
   reducers: {
     selectUser: (state) => {
       state.users = [];
-    },
+    }
   },
   extraReducers: (builder) =>
     builder
@@ -32,7 +33,7 @@ export const userSlice = createSlice({
         state.hasErrors = true;
         state.users = [];
         state.error = action.error.message;
-      }),
+      })
 });
 
 export { fetchUsers };

@@ -1,36 +1,18 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useHistory,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Formik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
 import { TextField, Button, Container, CssBaseline } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Layout from "../../components/layout.js";
 import { fetchFields } from "../../features/fields/fieldSlice";
 import { fetchOrganizations } from "../../features/organizations/organizationSlice";
-import Table from "../../components/table";
 import Title from "../../components/title";
+import Layout from "../../components/layout";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-  },
   hero: {
     padding: theme.spacing(4),
     display: "flex",
@@ -62,10 +44,15 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
     },
+
+    // padding: theme.spacing(2),
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
   },
 }));
 
-export const ShowField = () => {
+const ShowField = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -80,7 +67,7 @@ export const ShowField = () => {
     }
   }, [orgData.status, fieldData.status, dispatch]);
 
-  const field = fieldData.fields.find((field) => field.id == id);
+  const field = fieldData.fields.find((f) => f.id === id);
   console.log("field", field);
 
   return (
@@ -119,6 +106,7 @@ export const ShowField = () => {
             onSubmit={(values, { setSubmitting }) => {
               JSON.stringify(values, null, 2);
               setTimeout(() => {
+                /* eslint-disable */
                 alert(JSON.stringify(values, null, 2));
                 setSubmitting(false);
               }, 400);
@@ -131,7 +119,7 @@ export const ShowField = () => {
               handleChange,
               handleBlur,
               handleSubmit,
-              isSubmitting,
+              isSubmitting
               /* and other goodies */
             }) => (
               <form className={classes.form} onSubmit={handleSubmit}>
@@ -242,3 +230,5 @@ export const ShowField = () => {
     </Layout>
   );
 };
+
+export default ShowField;
