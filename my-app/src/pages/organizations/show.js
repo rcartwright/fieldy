@@ -47,6 +47,7 @@ const ShowOrganization = () => {
   const { id } = useParams();
   const fieldData = useSelector((state) => state.fieldState);
   const orgData = useSelector((state) => state.organizationState);
+  const [field, setField] = useState(null);
 
   useEffect(() => {
     if (fieldData.status === "idle") {
@@ -55,8 +56,6 @@ const ShowOrganization = () => {
       dispatch(fetchOrganizations());
     }
   }, [orgData.status, fieldData.status, dispatch]);
-
-  const [setField] = useState(null);
 
   const setFieldById = (fieldId) => {
     const field = fieldData.fields.find((f) => f.id === fieldId);
