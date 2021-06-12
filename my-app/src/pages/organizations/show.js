@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import { Button } from "@material-ui/core";
 import { fetchFields } from "../../features/fields/fieldSlice";
 import { fetchOrganizations } from "../../features/organizations/organizationSlice";
 import Table from "../../components/table";
@@ -37,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.background.dark,
     fontSize: "39px",
     fontWeight: 100,
+  },
+  tableHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "end",
   },
 }));
 
@@ -133,8 +139,17 @@ const ShowOrganization = () => {
       }
     >
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.tableHeader}>
           <Title>Fields</Title>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => history.push(`/fields/create`)}
+          >
+            Create
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
           <Table
             status={fieldData.status}
             rows={fields}

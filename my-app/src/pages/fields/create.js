@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CreateField = () => {
+  console.log("CREATE FIELD");
   const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -70,40 +71,32 @@ const CreateField = () => {
   console.log("field", field);
 
   return (
-    <Layout
-      hero={
-        <div className={classes.hero}>
-          <Typography
-            className={classes.title}
-            component="h1"
-            variant="h5"
-            color="primary"
-            gutterBottom
-          >
-            {field.name}
-          </Typography>
-        </div>
-      }
-    >
+    <Layout>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Paper className={classes.paper}>
           <Title>Add Field</Title>
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{
+              name: "",
+              street: "",
+              street1: "",
+              city: "",
+              state: "",
+              zip: "",
+            }}
             validate={(values) => {
               const errors = {};
-              if (!values.email) {
-                errors.email = "Required";
-              } else if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-              ) {
-                errors.email = "Invalid email address";
+              if (!values.name) {
+                errors.name = "Required";
               }
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              JSON.stringify(values, null, 2);
+              console.log(
+                "SHOW JSON.stringify(values, null, 2)",
+                JSON.stringify(values, null, 2)
+              );
               setTimeout(() => {
                 // eslint-disable-next-line
                 alert(JSON.stringify(values, null, 2));

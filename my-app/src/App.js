@@ -4,6 +4,7 @@ import Users from "./pages/users/users";
 import Organizations from "./pages/organizations/index";
 import ShowOrganization from "./pages/organizations/show";
 import ShowField from "./pages/fields/show";
+import CreateField from "./pages/fields/create";
 import "./App.css";
 
 export default function App() {
@@ -21,6 +22,13 @@ export default function App() {
             />
           )}
           component={ShowOrganization}
+        />
+        <Route
+          path="/fields/create"
+          render={(props) => (
+            <CreateField {...props} pieceOfState={this.state.pieceOfState} />
+          )}
+          component={CreateField}
         />
         <Route
           path="/fields/:id"
