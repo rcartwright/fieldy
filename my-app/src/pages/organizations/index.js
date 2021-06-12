@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Organizations = () => {
+const Organizations = () => {
   let history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -130,3 +130,5 @@ export const Organizations = () => {
     </Layout>
   );
 };
+
+export default Organizations;

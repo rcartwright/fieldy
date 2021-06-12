@@ -3,7 +3,6 @@ import { fetchUsers } from "./../../features/users/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Layout from "../../components/layout.js";
 import Title from "../../components/title";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
