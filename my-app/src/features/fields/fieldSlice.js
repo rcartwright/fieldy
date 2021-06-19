@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFields } from "./fieldAPI";
+import { fetchFields, createField } from "./fieldAPI";
 
 const initialState = {
   status: "idle",
@@ -36,6 +36,6 @@ export const fieldSlice = createSlice({
       })
 });
 
-export { fetchFields };
+export { fetchFields, createField };
 
 export default fieldSlice.reducer;

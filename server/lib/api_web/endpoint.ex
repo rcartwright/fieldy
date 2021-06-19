@@ -1,7 +1,11 @@
 defmodule APIWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :api
 
-  plug Corsica, origins: "http://localhost:3000"
+  plug Corsica, 
+    origins: "http://localhost:3000",
+    allow_credentials: true,
+    allow_headers: ["Content-Type"],
+    log: [rejected: :error, invalid: :warn, accepted: :debug]
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.

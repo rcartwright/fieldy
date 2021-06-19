@@ -7,7 +7,7 @@ import { TextField, Button, Container, CssBaseline } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { fetchFields } from "../../features/fields/fieldSlice";
+import { fetchFields, createField } from "../../features/fields/fieldSlice";
 import { fetchOrganizations } from "../../features/organizations/organizationSlice";
 import Title from "../../components/title";
 import Layout from "../../components/layout";
@@ -94,14 +94,29 @@ const CreateField = () => {
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log(
-                "SHOW JSON.stringify(values, null, 2)",
+                "CREATE JSON.stringify(values, null, 2)",
                 JSON.stringify(values, null, 2)
               );
-              setTimeout(() => {
-                // eslint-disable-next-line
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
+              dispatch(
+                createField({
+                  field: {
+                    name: values.name,
+                    address: values.street,
+                    address1: values.street1,
+                    city: values.city,
+                    state: values.state,
+                    zip: values.zip,
+                  },
+                })
+              );
+              console.log("after submit");
+              //alert(JSON.stringify(values, null, 2));
+              return setSubmitting(false);
+              // setTimeout(() => {
+              //   // eslint-disable-next-line
+              //   alert(JSON.stringify(values, null, 2));
+              //   setSubmitting(false);
+              // }, 400);
             }}
           >
             {({
