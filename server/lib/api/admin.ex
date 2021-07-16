@@ -113,7 +113,12 @@ defmodule API.Admin do
       [%Field{}, ...]
 
   """
-  def list_fields do
+  def list_fields(orgId) do
+    # query = from u in Field,
+    #         select: u
+    #Repo.all(query)
+    #Repo.all(Field, organization_id: orgId)
+    #|> Repo.preload(:organization)
     Repo.all(Field)
   end
 

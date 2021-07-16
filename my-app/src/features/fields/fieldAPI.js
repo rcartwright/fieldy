@@ -1,25 +1,28 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchFields = createAsyncThunk("users/fetchFields", async () => {
-  const url = `http://192.168.99.100:4001/api/fields`;
+export const fetchFields = createAsyncThunk(
+  "users/fetchFields",
+  async (orgId) => {
+    const url = `http://192.168.99.100:4001/api/organizations/${orgId}/fields`;
 
-  // eslint-disable-next-line
-  const response = await fetch(url, {
-    method: "GET",
-    credentials: "same-origin",
-  })
-    .then((res) => res.json())
-    .then((responseJson) => {
-      console.log("responseJson", responseJson);
-      return responseJson;
+    // eslint-disable-next-line
+    const response = await fetch(url, {
+      method: "GET",
+      credentials: "same-origin",
     })
-    .catch((error) => {
-      console.error("getMany error: ", error);
-      return [];
-    });
+      .then((res) => res.json())
+      .then((responseJson) => {
+        console.log("responseJson", responseJson);
+        return responseJson;
+      })
+      .catch((error) => {
+        console.error("getMany error: ", error);
+        return [];
+      });
 
-  return response;
-});
+    return response;
+  }
+);
 
 export const createField = createAsyncThunk(
   "fields/create",

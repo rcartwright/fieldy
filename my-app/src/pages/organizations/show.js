@@ -57,7 +57,7 @@ const ShowOrganization = () => {
 
   useEffect(() => {
     if (fieldData.status === "idle") {
-      dispatch(fetchFields());
+      dispatch(fetchFields(id));
     } else if (orgData.status === "idle") {
       dispatch(fetchOrganizations());
     }

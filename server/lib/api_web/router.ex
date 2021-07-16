@@ -8,8 +8,9 @@ defmodule APIWeb.Router do
   scope "/api", APIWeb do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
-    resources "/organizations", OrganizationController
-    resources "/fields", FieldController
+    resources "/organizations", OrganizationController do
+      resources "/fields", FieldController
+    end
   end
   
 
