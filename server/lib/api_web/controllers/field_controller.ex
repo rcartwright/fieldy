@@ -7,7 +7,7 @@ defmodule APIWeb.FieldController do
   action_fallback APIWeb.FallbackController
 
   def index(conn, %{"organization_id" => orgId}) do
-    fields = Admin.list_fields()
+    fields = Admin.list_fields(orgId)
     render(conn, "index.json", fields: fields)
   end
 
