@@ -7,10 +7,7 @@ defmodule APIWeb.FieldController do
   action_fallback APIWeb.FallbackController
 
   def index(conn, %{"organization_id" => orgId}) do
-    IO.inspect("=====> BEFORE STUFF ")
-    IO.inspect("the orgId: #{orgId}")
-    fields = Admin.list_fields(orgId)
-    IO.inspect("the fields: #{fields}")
+    fields = Admin.list_fields()
     render(conn, "index.json", fields: fields)
   end
 
