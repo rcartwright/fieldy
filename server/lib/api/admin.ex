@@ -114,12 +114,9 @@ defmodule API.Admin do
 
   """
   def list_fields(orgId) do
-    # query = from u in Field,
-    #         select: u
-    # Repo.all(query)
-    Repo.all(Field, organization_id: orgId)
+    query = from(f in Field, where: f.organization_id == ^orgId, select: f)
+    Repo.all(query)
     # |> Repo.preload(:organization)
-    #Repo.all(Field)
   end
 
   @doc """
