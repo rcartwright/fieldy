@@ -114,14 +114,6 @@ const ShowOrganization = () => {
   const org = orgData.organizations.find((o) => o.id === id);
   console.log("fieldData", fieldData);
 
-  if (
-    fieldData.status === "loading" ||
-    fieldData.status === "idle" ||
-    orgData.status === "loading" ||
-    orgData.status === "idle"
-  ) {
-    return <div style={{ padding: "30px" }}>Loading...</div>;
-  }
   return (
     <Layout
       hero={

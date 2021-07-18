@@ -68,7 +68,6 @@ const ShowField = () => {
   }, [orgData.status, fieldData.status, dispatch]);
 
   const field = fieldData.fields.find((f) => f.id === id);
-  console.log("field", field);
 
   return (
     <Layout
@@ -107,10 +106,6 @@ const ShowField = () => {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              console.log(
-                "SHOW JSON.stringify(values, null, 2)",
-                JSON.stringify(values, null, 2)
-              );
               setTimeout(() => {
                 // eslint-disable-next-line
                 alert(JSON.stringify(values, null, 2));

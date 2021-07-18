@@ -37,54 +37,39 @@ const Table = ({
   clearItem,
   goToItem,
 }) => {
-  console.log("rows", rows);
-  console.log("hearderCol", headerColumns);
+  const classes = useStyles();
 
   const ShowTableContent = (rows, headerColumns) => {
-    const classes = useStyles();
-    console.log("rows", rows);
-    console.log("hearderCol", headerColumns);
-
-    if (status === "loading") {
-      return <div style={{ padding: "30px" }}>Loading...</div>;
-    }
-    if (status === "success") {
+    if (status === "loading" || status === "idle") {
       return (
-        <MUITable
-          className={classes.table}
-          size="medium"
-          aria-label="organizations table"
-        >
-          <TableHead>
-            <TableRow>
-              {headerColumns.map((col) => (
-                <TableCell className={classes.tableCell} align={col.align}>
-                  {col.name}
-                </TableCell>
-              ))}
+        <TableRow>
+          <TableCell component="th" scope="row">
+            Loading...
+          </TableCell>
+        </TableRow>
+      );
+    } else if (status === "success") {
+      return (
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              className={classes.tableLink}
+              key={row.id}
+              hover
+              onClick={(event) => goToItem(row.id)}
+            >
+              {" "}
+              {row.rows.map((column, index) => {
+                console.log("column", column);
+                return (
+                  <TableCell align={column.align} component="th" scope="row">
+                    {column.value}
+                  </TableCell>
+                );
+              })}
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                className={classes.tableLink}
-                key={row.id}
-                hover
-                onClick={(event) => goToItem(row.id)}
-              >
-                {" "}
-                {row.rows.map((column, index) => {
-                  console.log("column", column);
-                  return (
-                    <TableCell align={column.align} component="th" scope="row">
-                      {column.value}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            ))}
-          </TableBody>
-        </MUITable>
+          ))}
+        </TableBody>
       );
     }
     if (status === "error") {
@@ -94,7 +79,22 @@ const Table = ({
 
   return (
     <TableContainer component={Paper}>
-      {ShowTableContent(rows, headerColumns)}
+      <MUITable
+        className={classes.table}
+        size="medium"
+        aria-label="organizations table"
+      >
+        <TableHead>
+          <TableRow>
+            {headerColumns.map((col) => (
+              <TableCell className={classes.tableCell} align={col.align}>
+                {col.name}
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        {ShowTableContent(rows, headerColumns)}
+      </MUITable>
     </TableContainer>
   );
 };
