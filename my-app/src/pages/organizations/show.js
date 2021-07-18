@@ -56,12 +56,12 @@ const ShowOrganization = () => {
   const [field, setField] = useState(null);
 
   useEffect(() => {
-    if (fieldData.status === "idle") {
+    if (fieldData.status === "idle" || fieldData.status === "success") {
       dispatch(fetchFields(id));
     } else if (orgData.status === "idle") {
       dispatch(fetchOrganizations());
     }
-  }, [orgData.status, fieldData.status, dispatch]);
+  }, []);
 
   const setFieldById = (fieldId) => {
     const field = fieldData.fields.find((f) => f.id === fieldId);

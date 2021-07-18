@@ -15,27 +15,16 @@ export default function App() {
         <Route exact path="/organizations" component={Organizations} />
         <Route
           path="/organizations/:id"
-          render={(props) => (
-            <ShowOrganization
-              {...props}
-              pieceOfState={this.state.pieceOfState}
-            />
-          )}
+          render={(props) => <ShowOrganization {...props} />}
           component={ShowOrganization}
         />
         <Route
           path="/fields/create"
-          render={(props) => (
-            <CreateField {...props} pieceOfState={this.state.pieceOfState} />
-          )}
-          component={CreateField}
+          render={(props) => <CreateField {...props} />}
         />
         <Route
           path="/fields/:id"
-          render={(props) => (
-            <ShowField {...props} pieceOfState={this.state.pieceOfState} />
-          )}
-          component={ShowField}
+          render={(props) => <ShowField {...props} />}
         />
       </Switch>
     </Router>
