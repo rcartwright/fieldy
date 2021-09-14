@@ -51,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CreateField = () => {
-  console.log("CREATE FIELD");
+const CreateField = (props) => {
+  console.log("CREATE FIELD", props);
   const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -93,12 +93,13 @@ const CreateField = () => {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
+              console.log("orgId", id);
               console.log(
                 "CREATE JSON.stringify(values, null, 2)",
                 JSON.stringify(values, null, 2)
               );
               dispatch(
-                createField({
+                createField(id, {
                   field: {
                     name: values.name,
                     address: values.street,

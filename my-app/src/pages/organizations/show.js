@@ -136,7 +136,7 @@ const ShowOrganization = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => history.push(`/fields/create`)}
+            onClick={() => history.push(`/organizations/${id}/fields/create`)}
           >
             Create
           </Button>
