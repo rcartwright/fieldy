@@ -14,13 +14,14 @@ export default function App() {
         <Route exact path="/users" component={Users} />
         <Route exact path="/organizations" component={Organizations} />
         <Route
+          path="/organizations/:id/fields/create"
+          render={(props) => <CreateField {...props} />}
+          component={CreateField}
+        />
+        <Route
           path="/organizations/:id"
           render={(props) => <ShowOrganization {...props} />}
           component={ShowOrganization}
-        />
-        <Route
-          path="/fields/create"
-          render={(props) => <CreateField {...props} />}
         />
         <Route
           path="/fields/:id"
