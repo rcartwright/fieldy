@@ -22,6 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "docker": "docker-machine start && docker-machine env && docker-compose up",
     "eject": "react-scripts eject",
     "fix": "yarn fix:eslint && yarn fix:prettier",
     "fix:eslint": "eslint --fix \"**/*.*\"",
