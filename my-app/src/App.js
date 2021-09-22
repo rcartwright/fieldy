@@ -18,11 +18,7 @@ export default function App() {
           render={(props) => <CreateField {...props} />}
           component={CreateField}
         />
-        <Route
-          path="/organizations/:id"
-          render={(props) => <ShowOrganization {...props} />}
-          component={ShowOrganization}
-        />
+        <Route path="/organizations/:id" component={ShowOrganization} />
         <Route
           path="/fields/:id"
           render={(props) => <ShowField {...props} />}

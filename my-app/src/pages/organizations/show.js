@@ -54,19 +54,42 @@ const ShowOrganization = () => {
   const fieldData = useSelector((state) => state.fieldState);
   const orgData = useSelector((state) => state.organizationState);
   const [field, setField] = useState(null);
+  const [paramId, setParamId] = useState(id);
+  // setParamId(id);
 
   useEffect(() => {
-    if (fieldData.status === "idle" || fieldData.status === "success") {
-      dispatch(fetchFields(id));
-    } else if (orgData.status === "idle") {
+    console.log("inside useeffect", paramId);
+    if (
+      orgData.status === "idle" ||
+      orgData.status === "success" ||
+      fieldData.status === "idle" ||
+      fieldData.status === "success"
+    ) {
+      console.log("inside fetch org");
       dispatch(fetchOrganizations());
+      dispatch(fetchFields(id));
     }
-  }, []);
+    // if (orgData.status === "idle" && !orgData) {
+    //   dispatch(fetchOrganizations());
+    // }
+    // if (!fieldData.fields.length && fieldData.status === "idle") {
+    //   console.log("inside field fetch");
+    //   dispatch(fetchFields(id));
+    // }
+  }, [paramId]);
+
+  /*
+  when param id changes
+  */
 
   const setFieldById = (fieldId) => {
     const field = fieldData.fields.find((f) => f.id === fieldId);
-    setField(field);
+    if (field) {
+      setField(field);
+    }
   };
+
+  const org = orgData.organizations.find((o) => o.id === id);
 
   const goToField = (fieldId) => {
     setFieldById(id);
@@ -111,8 +134,15 @@ const ShowOrganization = () => {
     ],
   }));
 
-  const org = orgData.organizations.find((o) => o.id === id);
   console.log("fieldData", fieldData);
+
+  if (fieldData.status === "loading" || orgData.status === "loading") {
+    return <div>loading</div>;
+  }
+
+  if (!org) {
+    return <div>no org</div>;
+  }
 
   return (
     <Layout
