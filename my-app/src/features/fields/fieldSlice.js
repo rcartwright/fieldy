@@ -14,11 +14,23 @@ export const fieldSlice = createSlice({
   initialState,
   reducers: {
     selectField: (state) => {
-      state.users = [];
+      state.fields = [];
+    },
+    resetFields: (state) => {
+      state.status = "idle";
+      state.hasErrors = false;
+      state.fields = [];
+      state.error = null;
     }
   },
   extraReducers: (builder) =>
     builder
+      // .addCase(fetchFields.idle, (state) => {
+      //   state.status = "idle";
+      //   state.hasErrors = false;
+      //   state.fields = [];
+      //   state.error = null;
+      // })
       .addCase(fetchFields.pending, (state) => {
         state.status = "loading";
         state.hasErrors = false;
@@ -35,7 +47,7 @@ export const fieldSlice = createSlice({
         state.error = action.error.message;
       })
 });
-
-export { fetchFields, createField };
+const { resetFields } = fieldSlice.actions;
+export { fetchFields, createField, resetFields };
 
 export default fieldSlice.reducer;

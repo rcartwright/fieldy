@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchOrganizations } from "../../features/organizations/organizationSlice";
+import { resetFields } from "../../features/fields/fieldSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Layout from "../../components/layout.js";
 import Title from "../../components/title";
@@ -50,6 +51,8 @@ const Organizations = () => {
   const orgData = useSelector((state) => state.organizationState);
 
   useEffect(() => {
+    // reset fields when going back to org page
+    dispatch(resetFields());
     if (orgData.status === "idle") {
       dispatch(fetchOrganizations());
     }

@@ -59,28 +59,11 @@ const ShowOrganization = () => {
 
   useEffect(() => {
     console.log("inside useeffect", paramId);
-    if (
-      orgData.status === "idle" ||
-      orgData.status === "success" ||
-      fieldData.status === "idle" ||
-      fieldData.status === "success"
-    ) {
-      console.log("inside fetch org");
+    if (fieldData.status === "idle") {
       dispatch(fetchOrganizations());
       dispatch(fetchFields(id));
     }
-    // if (orgData.status === "idle" && !orgData) {
-    //   dispatch(fetchOrganizations());
-    // }
-    // if (!fieldData.fields.length && fieldData.status === "idle") {
-    //   console.log("inside field fetch");
-    //   dispatch(fetchFields(id));
-    // }
   }, [paramId]);
-
-  /*
-  when param id changes
-  */
 
   const setFieldById = (fieldId) => {
     const field = fieldData.fields.find((f) => f.id === fieldId);
