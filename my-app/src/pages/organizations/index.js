@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { fetchOrganizations } from "../../features/organizations/organizationSlice";
-import { resetFields } from "../../features/fields/fieldSlice";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Layout from "../../components/layout.js";
-import Title from "../../components/title";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -13,16 +9,13 @@ import TableRow from "@material-ui/core/TableRow";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import ListItem from "@material-ui/core/ListItem";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
   useHistory,
-  useLocation
 } from "react-router-dom";
+import { fetchOrganizations } from "../../features/organizations/organizationSlice";
+import { resetFields } from "../../features/fields/fieldSlice";
+import Layout from "../../components/layout";
+import Title from "../../components/title";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -45,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Organizations = () => {
-  let history = useHistory();
+  const history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
   const orgData = useSelector((state) => state.organizationState);
@@ -58,25 +51,27 @@ const Organizations = () => {
     }
   }, [orgData.status, dispatch]);
 
-  const [organization, setOrganization] = useState(null);
+ // const [organization, setOrganization] = useState(null);
 
-  const setOrgById = (id) => {
-    const org = orgData.organizations.find((org) => org.id == id);
-    setOrganization(org);
-  };
+  // const setOrgById = (id) => {
+  //   const org = orgData.organizations.find((_org) => _org.id === id);
+  //   setOrganization(org);
+  // };
 
-  const clearOrg = () => {
-    setOrganization(null);
-  };
+  // const clearOrg = () => {
+  //   setOrganization(null);
+  // };
 
   const goToOrg = (id) => {
-    setOrgById(id);
+    // setOrgById(id);
     history.push(`/organizations/${id}`);
   };
 
   const showTableContent = () => {
     if (orgData.status === "loading") {
-      return <div style={{ padding: "30px" }}>Loading...</div>;
+      (
+        <div style={{ padding: "30px" }}>Loading...</div>
+      )
     } else if (orgData.status === "success") {
       return (
         <Table
@@ -104,7 +99,7 @@ const Organizations = () => {
                 className={classes.tableLink}
                 key={row.id}
                 hover
-                onClick={(event) => goToOrg(row.id)}
+                onClick={() => goToOrg(row.id)}
               >
                 <TableCell component="th" scope="row">
                   {row.name}
@@ -118,6 +113,7 @@ const Organizations = () => {
     } else if (orgData.status === "error") {
       return <div>{orgData.error}</div>;
     }
+    return null;
   };
 
   return (

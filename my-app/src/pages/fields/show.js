@@ -21,19 +21,19 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     flexDirection: "column",
     backgroundColor: theme.palette.background.light,
-    borderBottom: `1px solid ${theme.palette.border.light}`,
+    borderBottom: `1px solid ${theme.palette.border.light}`
   },
   tableLink: {
-    cursor: "pointer",
+    cursor: "pointer"
   },
   title: {
     color: theme.palette.background.dark,
     fontSize: "39px",
-    fontWeight: 100,
+    fontWeight: 100
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(3)
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -42,14 +42,14 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
-      padding: theme.spacing(3),
+      padding: theme.spacing(3)
     },
 
     // padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
-    flexDirection: "column",
-  },
+    flexDirection: "column"
+  }
 }));
 
 const ShowField = () => {
@@ -96,7 +96,7 @@ const ShowField = () => {
               street1: "",
               city: "",
               state: "",
-              zip: "",
+              zip: ""
             }}
             validate={(values) => {
               const errors = {};
@@ -120,7 +120,7 @@ const ShowField = () => {
               handleChange,
               handleBlur,
               handleSubmit,
-              isSubmitting,
+              isSubmitting
               /* and other goodies */
             }) => (
               <form className={classes.form} onSubmit={handleSubmit}>

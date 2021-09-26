@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -26,6 +26,6 @@ export default function Title(props) {
   );
 }
 
-Title.propTypes = {
-  children: PropTypes.node,
-};
+// Title.propTypes = {
+//   children: PropTypes.node,
+// };

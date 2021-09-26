@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
-import { fetchUsers } from "./../../features/users/userSlice";
 import { useSelector, useDispatch } from "react-redux";
-import Layout from "../../components/layout.js";
-import Title from "../../components/title";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -11,6 +8,10 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import { fetchUsers } from "../../features/users/userSlice";
+import Layout from "../../components/layout";
+import Title from "../../components/title";
+
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -54,7 +55,7 @@ function DenseTable({ users }) {
                   </TableCell>
                   <TableCell>{row.email}</TableCell>
                   <TableCell align="right">
-                    {/*// eslint-disable-next-line*/}
+                    {/* eslint-disable-next-line */}
                     {row.is_active?.toString()}
                   </TableCell>
                 </TableRow>

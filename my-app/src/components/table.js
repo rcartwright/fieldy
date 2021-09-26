@@ -10,22 +10,22 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 650,
+    minWidth: 650
   },
   paper: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
-    flexDirection: "column",
+    flexDirection: "column"
   },
   tableLink: {
-    cursor: "pointer",
+    cursor: "pointer"
   },
   tableCell: {
     fontWeight: "600",
     background: "#fafafa",
-    padding: "10px 16px",
-  },
+    padding: "10px 16px"
+  }
 }));
 
 const Table = ({
@@ -33,13 +33,12 @@ const Table = ({
   headerColumns,
   status,
   error,
-  setItemById,
-  clearItem,
-  goToItem,
+  goToItem
 }) => {
+  console.log('status', status)
   const classes = useStyles();
 
-  const ShowTableContent = (rows, headerColumns) => {
+  const ShowTableContent = () => {
     if (status === "loading" || status === "idle") {
       return (
         <TableRow>
@@ -47,8 +46,10 @@ const Table = ({
             Loading...
           </TableCell>
         </TableRow>
-      );
-    } else if (status === "success") {
+      )
+    } 
+    if (status === "success") {
+      console.log('rows', rows)
       return (
         <TableBody>
           {rows.map((row) => (
@@ -56,10 +57,10 @@ const Table = ({
               className={classes.tableLink}
               key={row.id}
               hover
-              onClick={(event) => goToItem(row.id)}
+              onClick={() => goToItem(row.id)}
             >
               {" "}
-              {row.rows.map((column, index) => {
+              {row.rows.map((column) => {
                 console.log("column", column);
                 return (
                   <TableCell align={column.align} component="th" scope="row">
@@ -75,6 +76,7 @@ const Table = ({
     if (status === "error") {
       return <div>{error}</div>;
     }
+    return null;
   };
 
   return (
@@ -93,7 +95,7 @@ const Table = ({
             ))}
           </TableRow>
         </TableHead>
-        {ShowTableContent(rows, headerColumns)}
+        {ShowTableContent()}
       </MUITable>
     </TableContainer>
   );

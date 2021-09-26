@@ -13,13 +13,13 @@ import Layout from "../../components/layout";
 
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 650,
+    minWidth: 650
   },
   paper: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
-    flexDirection: "column",
+    flexDirection: "column"
   },
   hero: {
     padding: theme.spacing(4),
@@ -29,21 +29,21 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     flexDirection: "column",
     backgroundColor: theme.palette.background.light,
-    borderBottom: `1px solid ${theme.palette.border.light}`,
+    borderBottom: `1px solid ${theme.palette.border.light}`
   },
   tableLink: {
-    cursor: "pointer",
+    cursor: "pointer"
   },
   title: {
     color: theme.palette.background.dark,
     fontSize: "39px",
-    fontWeight: 100,
+    fontWeight: 100
   },
   tableHeader: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "end",
-  },
+    alignItems: "end"
+  }
 }));
 
 const ShowOrganization = () => {
@@ -53,29 +53,27 @@ const ShowOrganization = () => {
   const { id } = useParams();
   const fieldData = useSelector((state) => state.fieldState);
   const orgData = useSelector((state) => state.organizationState);
-  const [field, setField] = useState(null);
-  const [paramId, setParamId] = useState(id);
-  // setParamId(id);
+  // const [field, setField] = useState(null);
+  const [paramId] = useState(id);
 
   useEffect(() => {
-    console.log("inside useeffect", paramId);
     if (fieldData.status === "idle") {
       dispatch(fetchOrganizations());
       dispatch(fetchFields(id));
     }
   }, [paramId]);
 
-  const setFieldById = (fieldId) => {
-    const field = fieldData.fields.find((f) => f.id === fieldId);
-    if (field) {
-      setField(field);
-    }
-  };
+  // const setFieldById = (fieldId) => {
+  //   const field = fieldData.fields.find((f) => f.id === fieldId);
+  //   if (field) {
+  //     setField(field);
+  //   }
+  // };
 
   const org = orgData.organizations.find((o) => o.id === id);
 
   const goToField = (fieldId) => {
-    setFieldById(id);
+    // setFieldById(id);
     history.push(`/fields/${fieldId}`);
   };
 
@@ -85,36 +83,36 @@ const ShowOrganization = () => {
       {
         name: "Name",
         value: field.name,
-        align: "left",
+        align: "left"
       },
       {
         name: "Address",
         value: field.address,
-        align: "left",
+        align: "left"
       },
       {
         name: "Address1",
         value: field.address1,
-        align: "left",
+        align: "left"
       },
       {
         name: "City",
-        value: field.city,
+        value: field.city
       },
       {
         name: "State",
-        value: field.state,
+        value: field.state
       },
       {
         name: "zipCode",
-        value: field.zip,
+        value: field.zip
       },
       {
         name: "is_active",
         value: "true",
-        align: "right",
-      },
-    ],
+        align: "right"
+      }
+    ]
   }));
 
   console.log("fieldData", fieldData);
@@ -166,7 +164,7 @@ const ShowOrganization = () => {
               { name: "City" },
               { name: "State" },
               { name: "Zip Code" },
-              { name: "Status", align: "right" },
+              { name: "Status", align: "right" }
             ]}
           />
         </Grid>
