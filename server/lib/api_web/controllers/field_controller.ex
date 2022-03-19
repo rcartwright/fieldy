@@ -19,7 +19,7 @@ defmodule APIWeb.FieldController do
     with {:ok, %Field{} = field} <- Admin.create_field(fields) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", Routes.field_path(conn, :create, field))
+      |> put_resp_header("location", Routes.organization_field_path(conn, :create, field))
       |> render("show.json", field: field)
     end
   end

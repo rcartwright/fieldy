@@ -57,11 +57,22 @@ const ShowOrganization = () => {
   const [paramId] = useState(id);
 
   useEffect(() => {
+    console.log('fieldData.status', fieldData.status)
+    console.log('fieldData.status 2', fieldData.status)
     if (fieldData.status === "idle") {
       dispatch(fetchOrganizations());
       dispatch(fetchFields(id));
     }
-  }, [paramId]);
+  }, [fieldData.status, paramId]);
+
+  // useEffect(() => {
+  //   //dispatch(resetFields());
+  //   if (fieldData.status === "idle") {
+  //     dispatch(fetchFields());
+  //   } else if (orgData.status === "idle") {
+  //     dispatch(fetchOrganizations());
+  //   }
+  // }, [orgData.status, fieldData.status, dispatch]);
 
   // const setFieldById = (fieldId) => {
   //   const field = fieldData.fields.find((f) => f.id === fieldId);
@@ -70,14 +81,14 @@ const ShowOrganization = () => {
   //   }
   // };
 
-  const org = orgData.organizations.find((o) => o.id === id);
+  const org = orgData.organizations?.find((o) => o.id === id);
 
   const goToField = (fieldId) => {
     // setFieldById(id);
     history.push(`/fields/${fieldId}`);
   };
 
-  const fields = fieldData.fields.map((field) => ({
+  const fields = fieldData.fields?.map((field) => ({
     id: field.id,
     rows: [
       {

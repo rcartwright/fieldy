@@ -58,14 +58,11 @@ const Table = ({
               onClick={() => goToItem(row.id)}
             >
               {" "}
-              {row.rows.map((column) => {
-                console.log("column", column);
-                return (
-                  <TableCell align={column.align} component="th" scope="row">
-                    {column.value}
-                  </TableCell>
-                );
-              })}
+              {row.rows.map((column) => 
+                <TableCell align={column.align} component="th" scope="row">
+                  {column.value}
+                </TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>
