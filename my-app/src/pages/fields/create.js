@@ -54,19 +54,19 @@ const CreateField = (props) => {
   console.log("CREATE FIELD", props);
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { id, fieldId } = useParams();
   const fieldData = useSelector((state) => state.fieldState);
   const orgData = useSelector((state) => state.organizationState);
 
   useEffect(() => {
-    if (fieldData.status === "idle") {
+    if (fieldId && fieldData.status === "idle") {
       dispatch(fetchFields());
     } else if (orgData.status === "idle") {
       dispatch(fetchOrganizations());
     }
   }, [orgData.status, fieldData.status, dispatch]);
 
-  const field = fieldData.fields.find((f) => f.id === id);
+  const field = fieldData.fields?.find((f) => f.id === fieldId);
   console.log("field", field);
 
   return (
@@ -98,7 +98,7 @@ const CreateField = (props) => {
                 JSON.stringify(values, null, 2)
               );
               dispatch(
-                createField(id, {
+                createField({orgId: id, payload: {
                   field: {
                     name: values.name,
                     address: values.street,
@@ -107,16 +107,10 @@ const CreateField = (props) => {
                     state: values.state,
                     zip: values.zip
                   }
-                })
+                }})
               );
               console.log("after submit");
-              // alert(JSON.stringify(values, null, 2));
               return setSubmitting(false);
-              // setTimeout(() => {
-              //   // eslint-disable-next-line
-              //   alert(JSON.stringify(values, null, 2));
-              //   setSubmitting(false);
-              // }, 400);
             }}
           >
             {({

@@ -20,7 +20,7 @@ export default function App() {
         />
         <Route path="/organizations/:id" component={ShowOrganization} />
         <Route
-          path="/fields/:id"
+          path="/organizations/:id/fields/:fieldId"
           render={(props) => <ShowField {...props} />}
         />
       </Switch>
