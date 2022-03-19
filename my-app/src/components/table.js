@@ -35,7 +35,6 @@ const Table = ({
   error,
   goToItem
 }) => {
-  console.log('status', status)
   const classes = useStyles();
 
   const ShowTableContent = () => {
@@ -49,7 +48,6 @@ const Table = ({
       )
     } 
     if (status === "success") {
-      console.log('rows', rows)
       return (
         <TableBody>
           {rows.map((row) => (

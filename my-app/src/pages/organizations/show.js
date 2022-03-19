@@ -118,7 +118,13 @@ const ShowOrganization = () => {
   console.log("fieldData", fieldData);
 
   if (fieldData.status === "loading" || orgData.status === "loading") {
-    return <div>loading</div>;
+    return (
+      <Layout>
+        <Grid container spacing={3}>
+          Loading...
+        </Grid>
+      </Layout>
+    )
   }
 
   if (!org) {
