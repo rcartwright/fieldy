@@ -114,9 +114,12 @@ defmodule API.Admin do
 
   """
   def list_fields(orgId) do
+    # the issue isn't the query - it's pulling the right info, the issue is when creating, it's not assigning the organization_id
     query = from(f in Field, where: f.organization_id == ^orgId, select: f)
-    Repo.all(query)
+    yo = Repo.all(query)
+    IO.inspect(yo)
     # |> Repo.preload(:organization)
+    yo
   end
 
   @doc """
@@ -148,6 +151,8 @@ defmodule API.Admin do
 
   """
   def create_field(attrs \\ %{}) do
+    IO.inspect('before attrs')
+    IO.inspect(attrs)
     %Field{}
     |> Field.changeset(attrs)
     |> Repo.insert()

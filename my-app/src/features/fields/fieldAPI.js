@@ -26,7 +26,7 @@ export const fetchFields = createAsyncThunk(
 
 export const createField = createAsyncThunk(
   "fields/create",
-  async (orgId, payload) => {
+  async ({orgId, payload}) => {
     console.log("INSIDE CREATEFIELD");
     console.log("the payload inside function", payload);
     const url = `http://192.168.99.100:4001/api/organizations/${orgId}/fields`;

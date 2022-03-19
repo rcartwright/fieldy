@@ -12,6 +12,7 @@ defmodule API.Admin.Field do
     field :name, :string
     field :state, :string
     field :zip, :string
+    #field :organization_id, :string
     belongs_to(:organization, Organization)
 
     timestamps()
@@ -20,7 +21,7 @@ defmodule API.Admin.Field do
   @doc false
   def changeset(field, attrs) do
     field
-    |> cast(attrs, [:name, :address, :address1, :city, :state, :zip, :is_active])
-    |> validate_required([:name, :address, :address1, :city, :state, :zip, :is_active])
+    |> cast(attrs, [:name, :address, :address1, :city, :state, :zip, :is_active, :organization_id])
+    |> validate_required([:name, :address, :address1, :city, :state, :zip, :is_active, :organization_id])
   end
 end
