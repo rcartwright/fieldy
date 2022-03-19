@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 const CreateField = (props) => {
   console.log("CREATE FIELD", props);
   const classes = useStyles();
+  const history = useHistory();
   const dispatch = useDispatch();
   const { id, fieldId } = useParams();
   const fieldData = useSelector((state) => state.fieldState);
@@ -66,8 +67,17 @@ const CreateField = (props) => {
     }
   }, [orgData.status, fieldData.status, dispatch]);
 
-  const field = fieldData.fields?.find((f) => f.id === fieldId);
-  console.log("field", field);
+  // const field = fieldData.fields?.find((f) => f.id === fieldId);
+
+  // const goToField = (fieldId) => {
+  //   // setFieldById(id);
+  //   history.push(`/organizations/${id}/fields/${fieldId}`);
+  // };
+
+  const goToOrg = () => {
+    // setFieldById(id);
+    history.push(`/organizations/${id}`);
+  };
 
   return (
     <Layout>
@@ -110,7 +120,8 @@ const CreateField = (props) => {
                 }})
               );
               console.log("after submit");
-              return setSubmitting(false);
+              setSubmitting(false);
+              goToOrg()
             }}
           >
             {({
